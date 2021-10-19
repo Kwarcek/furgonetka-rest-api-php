@@ -1,0 +1,40 @@
+{
+  "name": "kwarcek/furgonetka-rest-api-php",
+  "description": "Furgonetka REST API service in PHP.",
+  "keywords": ["furgonetka","api","php","rest"],
+  "homepage": "https://github.com/kwarcek/furgonetka-rest-api-php",
+  "authors": [
+    {
+      "name": "Patryk Kania",
+      "email": "ecollatio@gmail.com",
+      "homepage": "https://github.com/kwarcek",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.3",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^6.3",
+    "guzzlehttp/psr7": "~1.4",
+    "php-http/guzzle6-adapter": "^1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.3",
+    "ramsey/uuid": "^4.1"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kwarcek\\FurgonetkaRestApi\\Test\\": "tests"
+    }
+  },
+  "autoload":{
+    "psr-4":{
+      "Kwarcek\\FurgonetkaRestApi\\":"src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
+}

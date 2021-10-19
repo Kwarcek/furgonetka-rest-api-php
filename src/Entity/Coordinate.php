@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Kwarcek\FurgonetkaRestApi\Entity;
+
+/**
+ * Class Coordinate
+ * @package Kwarcek\FurgonetkaRestApi\Entity
+ */
+class Coordinate extends Entity
+{
+    public float $latitude;
+    public float $longitude;
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+          'latitude' => $this->latitude,
+          'longitude' => $this->longitude,
+        ];
+    }
+}
