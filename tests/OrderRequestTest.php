@@ -5,9 +5,16 @@ namespace Kwarcek\FurgonetkaRestApi\Test;
 use Kwarcek\FurgonetkaRestApi\Request\OrderRequest;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class OrderRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class OrderRequestTest extends TestCase
 {
+    /** @var OrderRequest $request */
     private OrderRequest $request;
+
+    /** @var string $uuid */
     private string $uuid;
 
     public function setUp(): void

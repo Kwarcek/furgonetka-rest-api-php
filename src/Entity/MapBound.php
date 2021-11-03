@@ -8,9 +8,16 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class MapBound extends Entity
 {
+    /** @var Coordinate $northWest */
     public Coordinate $northWest;
+
+    /** @var Coordinate $northEast */
     public Coordinate $northEast;
+
+    /** @var Coordinate $southWest */
     public Coordinate $southWest;
+
+    /** @var Coordinate $southEast */
     public Coordinate $southEast;
 
     /**

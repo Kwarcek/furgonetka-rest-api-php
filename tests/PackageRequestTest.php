@@ -6,16 +6,19 @@ use Kwarcek\FurgonetkaRestApi\Entity\Service;
 use Kwarcek\FurgonetkaRestApi\Request\PackageRequest;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class PackageRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class PackageRequestTest extends TestCase
 {
+    /** @var PackageRequest $request */
     private PackageRequest $request;
-    private string $uuid;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = new PackageRequest();
-        $this->uuid = Uuid::uuid4()->toString();
+        $this->request = $this->client->package();
     }
 
     public function test_package_request_get_packages_list()
@@ -84,7 +87,6 @@ class PackageRequestTest extends TestCase
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $this->helper->orderShipments(Uuid::uuid4()->toString(), [(object)['id' => $packageId]]);
 
-        /** Async XD */
         sleep(2);
 
         $response = $this->request->generateProtocol([

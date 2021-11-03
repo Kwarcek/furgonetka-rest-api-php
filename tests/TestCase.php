@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Kwarcek\FurgonetkaRestApi\Test;
 
-use Kwarcek\FurgonetkaRestApi\Config\Credentials;
-use Kwarcek\FurgonetkaRestApi\FurgonetkaAuth;
 use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
+use Kwarcek\FurgonetkaRestApi\LoginCredential;
 use Kwarcek\FurgonetkaRestApi\Test\Helpers\RequestHelper;
-use Exception;
 
 /**
  * Class TestCase
@@ -18,11 +16,27 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     const DEFAULT_CARRIER = 'dpd';
 
+    /** @var RequestHelper $helper */
     public RequestHelper $helper;
+
+    /** @var FurgonetkaClient $helper */
+    public FurgonetkaClient $client;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->helper = new RequestHelper();
+        $this->getFurgonetkaClient();
+        $this->helper = new RequestHelper($this->client);
+    }
+
+    protected function getFurgonetkaClient(): FurgonetkaClient
+    {
+        $credentials = new LoginCredential();
+        $credentials->clientSecret = '';
+        $credentials->clientId = '';
+        $credentials->username = '';
+        $credentials->password = '';
+
+        return $this->client = new FurgonetkaClient($credentials);
     }
 }

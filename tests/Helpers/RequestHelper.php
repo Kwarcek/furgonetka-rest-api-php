@@ -2,10 +2,8 @@
 
 namespace Kwarcek\FurgonetkaRestApi\Test\Helpers;
 
-use Kwarcek\FurgonetkaRestApi\Config\Credentials;
-use Kwarcek\FurgonetkaRestApi\FurgonetkaAuth;
+use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Request\OrderRequest;
-use Kwarcek\FurgonetkaRestApi\Request\PackageRequest;
 use Kwarcek\FurgonetkaRestApi\Test\Traits\EntityFactory;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 
@@ -17,11 +15,11 @@ class RequestHelper
 {
     use EntityFactory;
 
-    private PackageRequest $packageRequest;
+    private FurgonetkaClient $client;
 
-    public function __construct()
+    public function __construct(FurgonetkaClient $client)
     {
-        $this->packageRequest = new PackageRequest();
+        $this->client = $client;
     }
 
     /**
@@ -32,7 +30,7 @@ class RequestHelper
     {
         $package = $this->getPackage();
 
-        return $this->packageRequest->addPackage(
+        return $this->client->package()->addPackage(
             $package->pickup,
             $package->receiver,
             $package->serviceId,
@@ -53,7 +51,7 @@ class RequestHelper
      */
     public function getPickupHoursProposition(array $packages, string $date): array
     {
-        return $this->packageRequest->getPickupDateProposition(
+        return $this->client->package()->getPickupDateProposition(
             $packages,
             $date
         );
@@ -66,27 +64,10 @@ class RequestHelper
      * @throws FurgonetkaApiException
      */
     public function orderShipments(string $uuid, array $packages): array
-    {
-        return (new OrderRequest())->orderShipments(
+    { //todo
+        return (new OrderRequest($this->client))->orderShipments(
             $uuid,
             $packages
         );
-    }
-
-    /**
-     * @return string
-     * @throws \Exception
-     */
-    public function getToken(): string
-    {
-        $credentials = Credentials::toArray();
-
-        return (new FurgonetkaAuth(
-            $credentials['client_id'],
-            $credentials['client_secret'],
-            $credentials['username'],
-            $credentials['password'],
-            $credentials['auth_url'],
-        ))->login()['access_token'];
     }
 }

@@ -5,16 +5,21 @@ namespace Kwarcek\FurgonetkaRestApi\Test;
 use Kwarcek\FurgonetkaRestApi\Entity\Regulation;
 use Kwarcek\FurgonetkaRestApi\Request\RegulationRequest;
 
+/**
+ * Class RegulationRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class RegulationRequestTest extends TestCase
 {
     const REGULATION_NAME = 'Regulamin DPD';
 
+    /** @var RegulationRequest $request */
     private RegulationRequest $request;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->request = new RegulationRequest();
+        $this->request = $this->client->regulation();
     }
 
     public function test_regulation_request_get_regulations()

@@ -3,6 +3,7 @@
 namespace Kwarcek\FurgonetkaRestApi\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\PickupDate;
+use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 
@@ -13,6 +14,14 @@ use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 class PickupRequest extends Request
 {
     use ResponseTrait;
+
+    /** @var FurgonetkaClient $client */
+    protected FurgonetkaClient $client;
+
+    public function __construct(FurgonetkaClient $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * @param string $uuid

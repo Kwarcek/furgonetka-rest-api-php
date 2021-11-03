@@ -5,14 +5,19 @@ namespace Kwarcek\FurgonetkaRestApi\Test;
 use Kwarcek\FurgonetkaRestApi\Request\DocumentRequest;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class DocumentRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class DocumentRequestTest extends TestCase
 {
+    /** @var DocumentRequest $request */
     private DocumentRequest $request;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = new DocumentRequest();
+        $this->request = $this->client->document();
     }
 
     public function test_document_request_get_documents()
@@ -22,7 +27,6 @@ class DocumentRequestTest extends TestCase
 
         $this->helper->orderShipments(Uuid::uuid4()->toString(), [(object)['id' => $packageId]]);
 
-        /** Async XD */
         sleep(2);
 
         $response = $this->request->getDocuments(

@@ -3,6 +3,7 @@
 namespace Kwarcek\FurgonetkaRestApi\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Agreement;
+use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 use Psr\Http\Message\ResponseInterface;
@@ -14,6 +15,14 @@ use Psr\Http\Message\ResponseInterface;
 class AccountRequest extends Request
 {
     use ResponseTrait;
+
+    /** @var FurgonetkaClient $client */
+    protected FurgonetkaClient $client;
+
+    public function __construct(FurgonetkaClient $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * @return array

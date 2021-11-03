@@ -8,15 +8,34 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class AddressDetails extends Entity
 {
+    /** @var string $street */
     public string $street = '';
+
+    /** @var string $postcode */
     public string $postcode = '';
+
+    /** @var string $city */
     public string $city = '';
+
+    /** @var string $name */
     public string $name = '';
+
+    /** @var string $company */
     public string $company = '';
+
+    /** @var string $countryCode */
     public string $countryCode = 'PL';
+
+    /** @var string $county */
     public string $county = '';
+
+    /** @var string $email */
     public string $email = '';
+
+    /** @var string $phone */
     public string $phone = '';
+
+    /** @var string $point */
     public string $point = '';
 
     /**

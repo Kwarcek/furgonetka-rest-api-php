@@ -2,8 +2,8 @@
 
 namespace Kwarcek\FurgonetkaRestApi\Request;
 
-use Kwarcek\FurgonetkaRestApi\Entity\Regulation;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
+use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
 
 /**
@@ -13,6 +13,14 @@ use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
 class RegulationRequest extends Request
 {
     use ResponseTrait;
+
+    /** @var FurgonetkaClient $client */
+    protected FurgonetkaClient $client;
+
+    public function __construct(FurgonetkaClient $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * @return array

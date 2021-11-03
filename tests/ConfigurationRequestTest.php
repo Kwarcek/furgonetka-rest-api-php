@@ -4,14 +4,19 @@ namespace Kwarcek\FurgonetkaRestApi\Test;
 
 use Kwarcek\FurgonetkaRestApi\Request\ConfigurationRequest;
 
+/**
+ * Class ConfigurationRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class ConfigurationRequestTest extends TestCase
 {
+    /** @var ConfigurationRequest $request */
     private ConfigurationRequest $request;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = new ConfigurationRequest();
+        $this->request = $this->client->configuration();
     }
 
     public function test_configuration_request_get_allowed_countries()

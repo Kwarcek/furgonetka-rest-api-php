@@ -4,9 +4,16 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
 
 class Agreement extends Entity
 {
+    /** @var string $name */
     public string $name;
+
+    /** @var Credential $credential */
     public Credential $credential;
+
+    /** @var Credential $additionalCredential */
     public Credential $additionalCredential;
+
+    /** @var int|null $serviceId */
     public ?int $serviceId;
 
     /**

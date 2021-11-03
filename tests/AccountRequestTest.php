@@ -7,14 +7,19 @@ use Kwarcek\FurgonetkaRestApi\Entity\Credential;
 use Kwarcek\FurgonetkaRestApi\Request\AccountRequest;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class AccountRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class AccountRequestTest extends TestCase
 {
-    private AccountRequest $request;
+    /** @var AccountRequest $request */
+    protected AccountRequest $request;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = new AccountRequest();
+        $this->request = $this->client->account();
     }
 
     public function test_account_request_get_carrier_list()

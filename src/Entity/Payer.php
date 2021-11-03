@@ -8,6 +8,7 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Payer extends Entity
 {
+    /** @var string $costCenter */
     public string $costCenter = '';
 
     /**

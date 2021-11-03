@@ -4,6 +4,7 @@ namespace Kwarcek\FurgonetkaRestApi;
 
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 use GuzzleHttp\Client;
+use Kwarcek\FurgonetkaRestApi\Traits\RequestTrait;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\ClientException;
 
@@ -11,25 +12,24 @@ use GuzzleHttp\Exception\ClientException;
  * Class FurgonetkaClient
  * @package Kwarcek\FurgonetkaRestApi
  */
-class FurgonetkaClient
+class FurgonetkaClient extends FurgonetkaAuth
 {
-    private string $apiUrl;
-    private string $token;
+    use RequestTrait;
+
+    /** @var Client|null $apiClient */
     private ?Client $apiClient = null;
 
-    /**
-     * FurgonetkaClient constructor.
-     * @param string $apiUrl
-     * @param string $token
-     */
-    public function __construct(string $apiUrl, string $token)
+    /** @var LoginCredential $loginCredentials */
+    protected LoginCredential $loginCredentials;
+
+    public function __construct(LoginCredential $loginCredentials)
     {
-        $this->apiUrl = $apiUrl;
-        $this->token = $token;
+        $this->loginCredentials = $loginCredentials;
     }
 
     /**
      * @return Client
+     * @throws \Exception
      */
     public function getClient(): Client
     {
@@ -37,18 +37,18 @@ class FurgonetkaClient
             return $this->apiClient;
         }
 
-        $this->apiClient = new Client([
+        $this->login();
+
+        return $this->apiClient = new Client([
             'verify' => false,
-            'base_uri' => $this->apiUrl,
+            'base_uri' => $this->loginCredentials->apiUrl,
             'timeout' => 8,
             'headers' => [
-                'Authorization' => "Bearer {$this->token}",
+                'Authorization' => "Bearer {$this->authCredential->accessToken}",
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ],
         ]);
-
-        return $this->apiClient;
     }
 
     /**

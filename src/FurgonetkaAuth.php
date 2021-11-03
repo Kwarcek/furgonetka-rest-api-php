@@ -11,44 +11,22 @@ use Exception;
  */
 class FurgonetkaAuth
 {
-    protected string $clientId;
-    protected string $clientSecret;
-    protected string $username;
-    protected string $password;
-    private string $authUrl;
+    protected ?AuthCredential $authCredential = null;
 
     /**
-     * FurgonetkaAuth constructor.
-     * @param string $clientId
-     * @param string $clientSecret
-     * @param string $username
-     * @param string $password
-     * @param string $authUrl
-     */
-    public function __construct(
-        string $clientId,
-        string $clientSecret,
-        string $username,
-        string $password,
-        string $authUrl
-    ) {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->username = $username;
-        $this->password = $password;
-        $this->authUrl = $authUrl;
-    }
-
-    /**
-     * @return array
+     * @return AuthCredential
      * @throws Exception
      */
-    public function login(): array
+    public function login(): AuthCredential
     {
-        $basicAuth = base64_encode("{$this->clientId}:{$this->clientSecret}");
+        if($this->authCredential !== null) {
+            return $this->authCredential;
+        }
+
+        $basicAuth = base64_encode("{$this->loginCredentials->clientId}:{$this->loginCredentials->clientSecret}");
 
         $authClient = new Client([
-            'base_uri' => $this->authUrl,
+            'base_uri' => $this->loginCredentials->authUrl,
             'timeout' => 8,
             'verify' => false,
         ]);
@@ -60,8 +38,8 @@ class FurgonetkaAuth
             'form_params' => [
                 'grant_type' => 'password',
                 'scope' => 'api',
-                'username' => $this->username,
-                'password' => $this->password,
+                'username' => $this->loginCredentials->username,
+                'password' => $this->loginCredentials->password,
             ]
         ]);
 
@@ -71,11 +49,12 @@ class FurgonetkaAuth
 
         $response = json_decode($response->getBody(), true);
 
-        return [
-            'access_token' => $response['access_token'],
-            'token_type' => $response['token_type'],
-            'expires_in' => $response['expires_in'],
-            'refresh_token' => $response['refresh_token'],
-        ];
+        $this->authCredential = new AuthCredential();
+        $this->authCredential->accessToken = $response['access_token'];
+        $this->authCredential->tokenType = $response['token_type'];
+        $this->authCredential->expiresIn = $response['expires_in'];
+        $this->authCredential->refreshToken = $response['refresh_token'];
+
+        return $this->authCredential;
     }
 }

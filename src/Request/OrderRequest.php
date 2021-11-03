@@ -15,6 +15,14 @@ class OrderRequest extends Request
 {
     use ResponseTrait;
 
+    /** @var FurgonetkaClient $client */
+    protected FurgonetkaClient $client;
+
+    public function __construct(FurgonetkaClient $client)
+    {
+        $this->client = $client;
+    }
+
     /**
      * @param string $uuid
      * @return array

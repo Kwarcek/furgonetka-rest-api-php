@@ -4,20 +4,49 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
 
 class Credential extends Entity
 {
+    /** @var string $user */
     public string $user;
+
+    /** @var string $login */
     public string $login;
+
+    /** @var string $password */
     public string $password;
+
+    /** @var string $sap */
     public string $sap;
+
+    /** @var string $masterFid */
     public string $masterFid;
+
+    /** @var string $accountNumber */
     public string $accountNumber;
+
+    /** @var string $key */
     public string $key;
+
+    /** @var string $meterNumber */
     public string $meterNumber;
+
+    /** @var string $shipxClientId */
     public string $shipxClientId;
+
+    /** @var string $shipxToken */
     public string $shipxToken;
+
+    /** @var string $email */
     public string $email;
+
+    /** @var string $postOfficeId */
     public string $postOfficeId;
+
+    /** @var string $shipperNumber */
     public string $shipperNumber;
+
+    /** @var string $userId */
     public string $userId;
+
+    /** @var bool $allegroDeal */
     public bool $allegroDeal;
 
     /**

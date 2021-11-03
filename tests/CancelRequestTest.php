@@ -5,16 +5,23 @@ namespace Kwarcek\FurgonetkaRestApi\Test;
 use Kwarcek\FurgonetkaRestApi\Request\CancelRequest;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class CancelRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class CancelRequestTest extends TestCase
 {
+    /** @var CancelRequest $request */
     private CancelRequest $request;
+
+    /** @var string $uuid */
     private string $uuid;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->uuid = Uuid::uuid4()->toString();
-        $this->request = new CancelRequest();
+        $this->request = $this->client->cancel();
     }
 
     public function test_cancel_request_cancel_packages()

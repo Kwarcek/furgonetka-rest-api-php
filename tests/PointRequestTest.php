@@ -9,14 +9,19 @@ use Kwarcek\FurgonetkaRestApi\Entity\Location;
 use Kwarcek\FurgonetkaRestApi\Entity\MapBound;
 use Kwarcek\FurgonetkaRestApi\Request\PointRequest;
 
+/**
+ * Class PointRequestTest
+ * @package Kwarcek\FurgonetkaRestApi\Test
+ */
 class PointRequestTest extends TestCase
 {
+    /** @var PointRequest $request */
     private PointRequest $request;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = new PointRequest();
+        $this->request = $this->client->point();
     }
 
     public function test_point_request_get_map_points()

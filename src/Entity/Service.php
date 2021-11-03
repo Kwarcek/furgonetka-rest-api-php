@@ -8,7 +8,10 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Service extends Entity
 {
+    /** @var array $service */
     public array $service;
+
+    /** @var array $serviceId */
     public array $serviceId;
 
     /**

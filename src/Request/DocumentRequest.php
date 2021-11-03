@@ -3,6 +3,7 @@
 namespace Kwarcek\FurgonetkaRestApi\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Label;
+use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 
@@ -16,6 +17,14 @@ class DocumentRequest extends Request
 
     const DOCUMENT_TYPE_LABELS = 'labels';
     const DOCUMENT_PROTOCOLS_OTHERS = 'protocols_others';
+
+    /** @var FurgonetkaClient $client */
+    protected FurgonetkaClient $client;
+
+    public function __construct(FurgonetkaClient $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * @param string $uuid

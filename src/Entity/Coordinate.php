@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Kwarcek\FurgonetkaRestApi\Entity;
 
 /**
@@ -10,7 +8,10 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Coordinate extends Entity
 {
+    /** @var float $latitude */
     public float $latitude;
+
+    /** @var float $longitude */
     public float $longitude;
 
     /**

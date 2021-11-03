@@ -9,6 +9,7 @@ use Kwarcek\FurgonetkaRestApi\Entity\Package;
 use Kwarcek\FurgonetkaRestApi\Entity\Parcel;
 use Kwarcek\FurgonetkaRestApi\Entity\Payer;
 use Kwarcek\FurgonetkaRestApi\Entity\Service;
+use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 
@@ -19,6 +20,14 @@ use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 class PackageRequest extends Request
 {
     use ResponseTrait;
+
+    /** @var FurgonetkaClient $client */
+    protected FurgonetkaClient $client;
+
+    public function __construct(FurgonetkaClient $client)
+    {
+        $this->client = $client;
+    }
 
     const PACKAGE_TYPE_PACKAGE = 'package';
     const PACKAGE_TYPE_DOX = 'dox';
