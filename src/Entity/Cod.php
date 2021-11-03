@@ -8,11 +8,22 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Cod extends Entity
 {
-    public float $amount = 0;
+    /** @var float $amount */
+    public float $amount = 0.0;
+
+    /** @var bool $express */
     public bool $express = false;
+
+    /** @var string $iban */
     public string $iban = '';
+
+    /** @var string $name */
     public string $name = '';
+
+    /** @var bool $transferDone */
     public bool $transferDone = false;
+
+    /** @var string $transferDateInfo */
     public string $transferDateInfo = '';
 
     /**
