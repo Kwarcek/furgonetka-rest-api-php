@@ -8,10 +8,7 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class AdditionalServices extends Entity
 {
-    /** @var bool $cod */
-    public bool $cod = false;
-
-    /** @var bool $rod */
+    public Cod $cod;
     public bool $rod = false;
 
     /** @var bool $cud */
@@ -80,6 +77,12 @@ class AdditionalServices extends Entity
     /** @var bool $waitingTime */
     public bool $waitingTime = false;
 
+    /** @var bool $deligooExpress */
+    public bool $deligooExpress = false;
+
+    /** @var bool $ambroSize20 */
+    public bool $ambroSize20 = false;
+
     /** @var bool $pocztaKurier24 */
     public bool $pocztaKurier24 = false;
 
@@ -113,6 +116,8 @@ class AdditionalServices extends Entity
             'poczta_globalexpres' => $this->pocztaGlobalexpres,
             'delivery_confirmation' => $this->deliveryConfirmation,
             'waiting_time' => $this->waitingTime,
+            'deligoo_express' => $this->deligooExpress,
+            'ambro_size20' => $this->ambroSize20,
             'poczta_kurier24' => $this->pocztaKurier24,
         ];
     }
