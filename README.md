@@ -3,7 +3,7 @@
 
 Source: <a href="https://furgonetka.pl/api/rest" target="_blank">Furgonetka REST API Docs</a>  
 API Version compatible: v1.0.21    
-Docs: <a href="https://kwarcek.github.io/furgonetka-docs/">Link to documentation</a>
+Docs: Coming soon 🔜
 
 <h2>Basic usage</h2>
 <h3>Installation</h3>
