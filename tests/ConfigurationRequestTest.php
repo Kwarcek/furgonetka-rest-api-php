@@ -10,7 +10,6 @@ use Kwarcek\FurgonetkaRestApi\Request\ConfigurationRequest;
  */
 class ConfigurationRequestTest extends TestCase
 {
-    /** @var ConfigurationRequest $request */
     private ConfigurationRequest $request;
 
     public function setUp(): void

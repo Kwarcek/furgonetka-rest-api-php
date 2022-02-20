@@ -14,7 +14,6 @@ class CancelRequest extends Request
 {
     use ResponseTrait;
 
-    /** @var FurgonetkaClient $client */
     protected FurgonetkaClient $client;
 
     public function __construct(FurgonetkaClient $client)
@@ -22,11 +21,7 @@ class CancelRequest extends Request
         $this->client = $client;
     }
 
-    /**
-     * @param string $uuid
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function cancelPackagesSummary(string $uuid): array
     {
         $response = $this->client->get("/cancel-command/{$uuid}");
@@ -34,12 +29,7 @@ class CancelRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param array $packages
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function cancelPackages(string $uuid, array $packages): array
     {
         $response = $this->client->put(

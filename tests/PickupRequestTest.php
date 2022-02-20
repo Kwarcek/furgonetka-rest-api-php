@@ -13,7 +13,6 @@ use Ramsey\Uuid\Uuid;
  */
 class PickupRequestTest extends TestCase
 {
-    /** @var PickupRequest $request */
     private PickupRequest $request;
 
     public function setUp(): void

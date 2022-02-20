@@ -13,9 +13,6 @@ use Kwarcek\FurgonetkaRestApi\Entity\Parcel;
  */
 trait EntityFactory
 {
-    /**
-     * @return AddressDetails
-     */
     public function getPickup(): AddressDetails
     {
         $pickup = new AddressDetails();
@@ -32,9 +29,6 @@ trait EntityFactory
         return $pickup;
     }
 
-    /**
-     * @return AddressDetails
-     */
     public function getReceiver(): AddressDetails
     {
         $receiver = new AddressDetails();
@@ -51,9 +45,6 @@ trait EntityFactory
         return $receiver;
     }
 
-    /**
-     * @return AddressDetails
-     */
     public function getSender(): AddressDetails
     {
         $sender = new AddressDetails();
@@ -70,17 +61,11 @@ trait EntityFactory
         return $sender;
     }
 
-    /**
-     * @return AdditionalServices
-     */
     public function getAdditionalServices(): AdditionalServices
     {
         return new AdditionalServices();
     }
 
-    /**
-     * @return Parcel
-     */
     public function getParcel(): Parcel
     {
         $parcel = new Parcel();
@@ -94,9 +79,6 @@ trait EntityFactory
         return $parcel;
     }
 
-    /**
-     * @return Package
-     */
     public function getPackage(): Package
     {
         $package = new Package();

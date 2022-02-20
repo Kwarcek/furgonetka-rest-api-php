@@ -15,7 +15,6 @@ use Kwarcek\FurgonetkaRestApi\Request\PointRequest;
  */
 class PointRequestTest extends TestCase
 {
-    /** @var PointRequest $request */
     private PointRequest $request;
 
     public function setUp(): void

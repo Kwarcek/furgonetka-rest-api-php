@@ -16,10 +16,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     const DEFAULT_CARRIER = 'dpd';
 
-    /** @var RequestHelper $helper */
     public RequestHelper $helper;
-
-    /** @var FurgonetkaClient $helper */
     public FurgonetkaClient $client;
 
     protected function setUp(): void

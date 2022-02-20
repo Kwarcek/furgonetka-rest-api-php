@@ -13,7 +13,6 @@ use Ramsey\Uuid\Uuid;
  */
 class AccountRequestTest extends TestCase
 {
-    /** @var AccountRequest $request */
     protected AccountRequest $request;
 
     public function setUp(): void

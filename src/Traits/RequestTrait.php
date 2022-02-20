@@ -18,73 +18,46 @@ use Kwarcek\FurgonetkaRestApi\Request\RegulationRequest;
  */
 trait RequestTrait
 {
-    /**
-     * @return AccountRequest
-     */
     public function account(): AccountRequest
     {
         return new AccountRequest($this);
     }
 
-    /**
-     * @return CancelRequest
-     */
     public function cancel(): CancelRequest
     {
         return new CancelRequest($this);
     }
 
-    /**
-     * @return ConfigurationRequest
-     */
     public function configuration(): ConfigurationRequest
     {
         return new ConfigurationRequest($this);
     }
 
-    /**
-     * @return DocumentRequest
-     */
     public function document(): DocumentRequest
     {
         return new DocumentRequest($this);
     }
 
-    /**
-     * @return OrderRequest
-     */
     public function order(): OrderRequest
     {
         return new OrderRequest($this);
     }
 
-    /**
-     * @return PackageRequest
-     */
     public function package(): PackageRequest
     {
         return new PackageRequest($this);
     }
 
-    /**
-     * @return PickupRequest
-     */
     public function pickup(): PickupRequest
     {
         return new PickupRequest($this);
     }
 
-    /**
-     * @return PointRequest
-     */
     public function point(): PointRequest
     {
         return new PointRequest($this);
     }
 
-    /**
-     * @return RegulationRequest
-     */
     public function regulation(): RegulationRequest
     {
         return new RegulationRequest($this);

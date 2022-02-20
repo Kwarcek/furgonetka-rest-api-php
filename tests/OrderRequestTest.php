@@ -11,10 +11,7 @@ use Ramsey\Uuid\Uuid;
  */
 class OrderRequestTest extends TestCase
 {
-    /** @var OrderRequest $request */
     private OrderRequest $request;
-
-    /** @var string $uuid */
     private string $uuid;
 
     public function setUp(): void

@@ -11,7 +11,6 @@ use Kwarcek\FurgonetkaRestApi\Request\RegulationRequest;
  */
 class AcceptCarrierRegulations extends TestCase
 {
-    /** @var RegulationRequest $request */
     protected RegulationRequest $request;
 
     protected function setUp(): void

@@ -22,10 +22,7 @@ class RequestHelper
         $this->client = $client;
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function addPackage(): array
     {
         $package = $this->getPackage();
@@ -43,12 +40,7 @@ class RequestHelper
         );
     }
 
-    /**
-     * @param array $packages
-     * @param string $date
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getPickupHoursProposition(array $packages, string $date): array
     {
         return $this->client->package()->getPickupDateProposition(
@@ -57,12 +49,7 @@ class RequestHelper
         );
     }
 
-    /**
-     * @param string $uuid
-     * @param array $packages
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function orderShipments(string $uuid, array $packages): array
     { //todo
         return (new OrderRequest($this->client))->orderShipments(

@@ -12,7 +12,6 @@ use Ramsey\Uuid\Uuid;
  */
 class PackageRequestTest extends TestCase
 {
-    /** @var PackageRequest $request */
     private PackageRequest $request;
 
     public function setUp(): void

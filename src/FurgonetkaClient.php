@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Kwarcek\FurgonetkaRestApi\Traits\RequestTrait;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\ClientException;
+use Exception;
 
 /**
  * Class FurgonetkaClient
@@ -16,10 +17,7 @@ class FurgonetkaClient extends FurgonetkaAuth
 {
     use RequestTrait;
 
-    /** @var Client|null $apiClient */
     private ?Client $apiClient = null;
-
-    /** @var LoginCredential $loginCredentials */
     protected LoginCredential $loginCredentials;
 
     public function __construct(LoginCredential $loginCredentials)
@@ -27,10 +25,7 @@ class FurgonetkaClient extends FurgonetkaAuth
         $this->loginCredentials = $loginCredentials;
     }
 
-    /**
-     * @return Client
-     * @throws \Exception
-     */
+    /** @throws Exception */
     public function getClient(): Client
     {
         if ($this->apiClient !== null) {
@@ -51,12 +46,7 @@ class FurgonetkaClient extends FurgonetkaAuth
         ]);
     }
 
-    /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function get(string $uri, array $data = []): ResponseInterface
     {
         try {
@@ -71,12 +61,7 @@ class FurgonetkaClient extends FurgonetkaAuth
         }
     }
 
-    /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function post(string $uri, array $data = []): ResponseInterface
     {
         try {
@@ -91,12 +76,7 @@ class FurgonetkaClient extends FurgonetkaAuth
         }
     }
 
-    /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function delete(string $uri, array $data = []): ResponseInterface
     {
         try {
@@ -111,12 +91,7 @@ class FurgonetkaClient extends FurgonetkaAuth
         }
     }
 
-    /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function put(string $uri, array $data = []): ResponseInterface
     {
         try {

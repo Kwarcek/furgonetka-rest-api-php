@@ -14,7 +14,6 @@ class RegulationRequest extends Request
 {
     use ResponseTrait;
 
-    /** @var FurgonetkaClient $client */
     protected FurgonetkaClient $client;
 
     public function __construct(FurgonetkaClient $client)
@@ -22,10 +21,7 @@ class RegulationRequest extends Request
         $this->client = $client;
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getRegulations(): array
     {
         $response = $this->client->get('/regulations');
@@ -33,11 +29,7 @@ class RegulationRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param array $regulations
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function acceptCarrierRegulations(array $regulations): array
     {
         $response = $this->client->post('/regulations', [

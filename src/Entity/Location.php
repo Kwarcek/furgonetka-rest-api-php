@@ -8,21 +8,11 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Location extends Entity
 {
-    /** @var Coordinate $coordinate */
     public Coordinate $coordinate;
-
-    /** @var string $searchPhrase */
     public string $searchPhrase = '';
-
-    /** @var Address $address */
     public Address $address;
-
-    /** @var float $pointsMaxDistance */
     public float $pointsMaxDistance = 10.00;
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return [

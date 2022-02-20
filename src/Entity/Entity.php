@@ -10,8 +10,5 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 abstract class Entity
 {
-    /**
-     * @return array
-     */
     abstract public function toArray(): array;
 }

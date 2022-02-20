@@ -15,7 +15,6 @@ class OrderRequest extends Request
 {
     use ResponseTrait;
 
-    /** @var FurgonetkaClient $client */
     protected FurgonetkaClient $client;
 
     public function __construct(FurgonetkaClient $client)
@@ -23,11 +22,7 @@ class OrderRequest extends Request
         $this->client = $client;
     }
 
-    /**
-     * @param string $uuid
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function orderShipmentsSummary(string $uuid)
     {
         $response = $this->client->get("/order-commands/{$uuid}");
@@ -35,13 +30,7 @@ class OrderRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param array $packages
-     * @param Label|null $label
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function orderShipments(
         string $uuid,
         array $packages,

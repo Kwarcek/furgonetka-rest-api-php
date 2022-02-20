@@ -11,10 +11,7 @@ use Ramsey\Uuid\Uuid;
  */
 class CancelRequestTest extends TestCase
 {
-    /** @var CancelRequest $request */
     private CancelRequest $request;
-
-    /** @var string $uuid */
     private string $uuid;
 
     public function setUp(): void

@@ -14,7 +14,6 @@ class ConfigurationRequest extends Request
 {
     use ResponseTrait;
 
-    /** @var FurgonetkaClient $client */
     protected FurgonetkaClient $client;
 
     public function __construct(FurgonetkaClient $client)
@@ -22,10 +21,7 @@ class ConfigurationRequest extends Request
         $this->client = $client;
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getAllowedCountries(): array
     {
         $response = $this->client->get('/configuration/allowed-countries');
@@ -33,10 +29,7 @@ class ConfigurationRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getCarriersStatements(): array
     {
         $response = $this->client->get('/configuration/services-statements');

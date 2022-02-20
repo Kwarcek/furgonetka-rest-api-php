@@ -13,10 +13,7 @@ class FurgonetkaAuth
 {
     protected ?AuthCredential $authCredential = null;
 
-    /**
-     * @return AuthCredential
-     * @throws Exception
-     */
+    /** @throws Exception */
     public function login(): AuthCredential
     {
         if($this->authCredential !== null) {

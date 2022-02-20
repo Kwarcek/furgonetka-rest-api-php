@@ -13,7 +13,6 @@ class RegulationRequestTest extends TestCase
 {
     const REGULATION_NAME = 'Regulamin DPD';
 
-    /** @var RegulationRequest $request */
     private RegulationRequest $request;
 
     protected function setUp(): void

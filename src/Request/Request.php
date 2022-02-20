@@ -14,9 +14,5 @@ use Exception;
  */
 abstract class Request
 {
-    /**
-     * @param ResponseInterface $response
-     * @return array
-     */
     abstract protected function response(ResponseInterface $response): array;
 }

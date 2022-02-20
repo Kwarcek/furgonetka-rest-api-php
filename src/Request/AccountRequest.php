@@ -16,7 +16,6 @@ class AccountRequest extends Request
 {
     use ResponseTrait;
 
-    /** @var FurgonetkaClient $client */
     protected FurgonetkaClient $client;
 
     public function __construct(FurgonetkaClient $client)
@@ -24,10 +23,7 @@ class AccountRequest extends Request
         $this->client = $client;
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getCarrierList(): array
     {
         $response = $this->client->get('/account/services');
@@ -35,11 +31,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $partnerUserId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getOAuthData(string $partnerUserId): array
     {
         $response = $this->client->get("/account/token/{$partnerUserId}");
@@ -47,10 +39,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getAccountAdvancedSettings(): array
     {
         $response = $this->client->get('/account/settings/advanced');
@@ -58,10 +47,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getlistOfShipmentTemplates(): array
     {
         $response = $this->client->get('/account/package-templates');
@@ -69,10 +55,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getListOfEntriesInTheAddressBook(): array
     {
         $response = $this->client->get('/account/address-book');
@@ -80,12 +63,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function dhlAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/dhl/{$uuid}", [
@@ -105,12 +83,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function dpdAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/dpd/{$uuid}", [
@@ -131,12 +104,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function fedexAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/fedex/{$uuid}", [
@@ -157,12 +125,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function glsAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/gls/{$uuid}", [
@@ -177,12 +140,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function inpostAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/inpost/{$uuid}", [
@@ -198,12 +156,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function orlenAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/orlen/{$uuid}", [
@@ -218,12 +171,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function pocztaPolskaAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/poczta/{$uuid}", [
@@ -239,12 +187,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param Agreement $agreement
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function upsAgreement(string $uuid, Agreement $agreement): array
     {
         $response = $this->client->put("/account/service-command/ups/{$uuid}", [
@@ -260,11 +203,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function agreementSummary(string $uuid): array
     {
         $response = $this->client->get("/account/service-command/{$uuid}");
@@ -272,11 +211,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function deleteAgreement(string $serviceId): array
     {
         $response = $this->client->delete("/account/service-delete/{$serviceId}");
@@ -284,11 +219,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getDhlAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('dhl', $serviceId);
@@ -296,11 +227,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getDpdAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('dpd', $serviceId);
@@ -308,11 +235,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getFedexAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('fedex', $serviceId);
@@ -320,11 +243,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getGlsAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('gls', $serviceId);
@@ -332,11 +251,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getInpostAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('inpost', $serviceId);
@@ -344,11 +259,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getOrlenAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('orlen', $serviceId);
@@ -356,11 +267,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getPocztaPolskaAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('poczta', $serviceId);
@@ -368,11 +275,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $serviceId
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function getUpsAgreement(string $serviceId): array
     {
         $response = $this->getAgreements('ups', $serviceId);
@@ -380,12 +283,7 @@ class AccountRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $carrier
-     * @param string $serviceId
-     * @return ResponseInterface
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     private function getAgreements(string $carrier, string $serviceId): ResponseInterface
     {
         return $this->client->get("/account/service/{$carrier}/{$serviceId}");

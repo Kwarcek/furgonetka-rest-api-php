@@ -8,18 +8,10 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Filter extends Entity
 {
-    /** @var array $services */
     public array $services;
-
-    /** @var array $pointTypes */
     public array $pointTypes;
-
-    /** @var MapBound $mapBound */
     public MapBound $mapBound;
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return [

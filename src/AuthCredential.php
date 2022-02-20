@@ -8,16 +8,9 @@ namespace Kwarcek\FurgonetkaRestApi;
  */
 class AuthCredential
 {
-    /** @var string $accessToken */
     public string $accessToken;
-
-    /** @var string $tokenType */
     public string $tokenType;
-
-    /** @var string $expiresIn */
     public string $expiresIn;
-
-    /** @var string $refreshToken */
     public string $refreshToken;
 
     public function toArray(): array

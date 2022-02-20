@@ -15,7 +15,6 @@ class PickupRequest extends Request
 {
     use ResponseTrait;
 
-    /** @var FurgonetkaClient $client */
     protected FurgonetkaClient $client;
 
     public function __construct(FurgonetkaClient $client)
@@ -23,11 +22,7 @@ class PickupRequest extends Request
         $this->client = $client;
     }
 
-    /**
-     * @param string $uuid
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function orderCourierDriveSummary(string $uuid): array
     {
         $response = $this->client->get(
@@ -37,13 +32,7 @@ class PickupRequest extends Request
         return $this->response($response);
     }
 
-    /**
-     * @param string $uuid
-     * @param array $packages
-     * @param PickupDate $pickupDate
-     * @return array
-     * @throws FurgonetkaApiException
-     */
+    /** @throws FurgonetkaApiException */
     public function orderCourierDrive(
         string $uuid,
         array $packages,

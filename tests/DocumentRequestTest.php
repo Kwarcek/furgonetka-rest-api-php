@@ -11,7 +11,6 @@ use Ramsey\Uuid\Uuid;
  */
 class DocumentRequestTest extends TestCase
 {
-    /** @var DocumentRequest $request */
     private DocumentRequest $request;
 
     public function setUp(): void

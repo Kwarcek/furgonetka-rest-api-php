@@ -10,10 +10,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 trait ResponseTrait
 {
-    /**
-     * @param ResponseInterface $response
-     * @return array
-     */
     protected function response(ResponseInterface $response): array
     {
         return [
