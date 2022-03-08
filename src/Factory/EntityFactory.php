@@ -1,6 +1,6 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test\Traits;
+namespace Kwarcek\FurgonetkaRestApi\Factory;
 
 use Kwarcek\FurgonetkaRestApi\Entity\AdditionalServices;
 use Kwarcek\FurgonetkaRestApi\Entity\AddressDetails;
@@ -8,10 +8,10 @@ use Kwarcek\FurgonetkaRestApi\Entity\Package;
 use Kwarcek\FurgonetkaRestApi\Entity\Parcel;
 
 /**
- * Trait EntityFactory
- * @package Kwarcek\FurgonetkaRestApi\Test\Traits
+ * Class EntityFactory
+ * @package Kwarcek\FurgonetkaRestApi\Test\Factory
  */
-trait EntityFactory
+class EntityFactory
 {
     public function getPickup(): AddressDetails
     {

@@ -12,6 +12,7 @@ use Exception;
 class FurgonetkaAuth
 {
     protected ?AuthCredential $authCredential = null;
+    protected array $config = [];
 
     /** @throws Exception */
     public function login(): AuthCredential

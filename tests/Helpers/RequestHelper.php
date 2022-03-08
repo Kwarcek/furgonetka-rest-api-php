@@ -4,8 +4,8 @@ namespace Kwarcek\FurgonetkaRestApi\Test\Helpers;
 
 use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Request\OrderRequest;
-use Kwarcek\FurgonetkaRestApi\Test\Traits\EntityFactory;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
+use Kwarcek\FurgonetkaRestApi\Factory\EntityFactory;
 
 /**
  * Trait RequestHelper
@@ -13,19 +13,20 @@ use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
  */
 class RequestHelper
 {
-    use EntityFactory;
-
     private FurgonetkaClient $client;
+    private EntityFactory $entityFactory;
 
     public function __construct(FurgonetkaClient $client)
     {
         $this->client = $client;
+        $this->entityFactory = new EntityFactory();
+
     }
 
     /** @throws FurgonetkaApiException */
     public function addPackage(): array
     {
-        $package = $this->getPackage();
+        $package = $this->entityFactory->getPackage();
 
         return $this->client->package()->addPackage(
             $package->pickup,
