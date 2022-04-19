@@ -2,7 +2,7 @@
 <h1>Furgonetka REST API PHP</h1>
 
 Source: <a href="https://furgonetka.pl/api/rest" target="_blank">Furgonetka REST API Docs</a>  
-API Version compatible: v1.0.21    
+API Version compatible: v1.0.22    
 Docs: Coming soon 🔜
 
 <h2>Basic usage</h2>
