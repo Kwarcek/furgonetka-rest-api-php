@@ -18,7 +18,7 @@ class OrderRequestTest extends TestCase
     {
         parent::setUp();
         $this->uuid = Uuid::uuid4()->toString();
-        $this->request = new OrderRequest();
+        $this->request = new OrderRequest($this->client);
     }
 
     public function test_order_request_order_shipments()

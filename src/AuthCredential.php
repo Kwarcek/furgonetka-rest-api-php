@@ -22,4 +22,15 @@ class AuthCredential
           'refresh_token' => $this->refreshToken,
         ];
     }
+
+    public static function fromArray(array $data): AuthCredential
+    {
+        $authCredential = new AuthCredential();
+        $authCredential->accessToken = $data['access_token'];
+        $authCredential->tokenType = $data['token_type'];
+        $authCredential->expiresIn = $data['expires_in'];
+        $authCredential->refreshToken = $data['refresh_token'];
+
+        return $authCredential;
+    }
 }

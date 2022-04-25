@@ -18,7 +18,7 @@ class PickupRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->pickup();
+        $this->request = new PickupRequest($this->client);
     }
 
     public function test_pickup_request_order_courier_drive()
@@ -26,7 +26,10 @@ class PickupRequestTest extends TestCase
         $helper = new RequestHelper($this->client);
         $packageId = $helper->addPackage()['data']['package_id'];
 
-        $helper->orderShipments(Uuid::uuid4()->toString(), [(object)['id' => $packageId]]);
+        $helper->orderShipments(
+            Uuid::uuid4()->toString(), [
+            (object)['id' => $packageId]
+        ]);
 
         sleep(2);
 

@@ -20,7 +20,7 @@ class PointRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->point();
+        $this->request = new PointRequest($this->client);
     }
 
     public function test_point_request_get_map_points()

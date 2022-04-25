@@ -16,7 +16,7 @@ class DocumentRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->document();
+        $this->request = new DocumentRequest($this->client);
     }
 
     public function test_document_request_get_documents()

@@ -2,12 +2,12 @@
 
 namespace Kwarcek\FurgonetkaRestApi;
 
+use Exception;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
-use GuzzleHttp\Client;
 use Kwarcek\FurgonetkaRestApi\Traits\RequestTrait;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\ClientException;
-use Exception;
 
 /**
  * Class FurgonetkaClient
@@ -17,43 +17,28 @@ class FurgonetkaClient extends FurgonetkaAuth
 {
     use RequestTrait;
 
-    private ?Client $apiClient = null;
-    protected LoginCredential $loginCredentials;
+    private ClientInterface $apiClient;
 
-    public function __construct(LoginCredential $loginCredentials)
+    public function __construct(
+        ClientInterface $apiClient,
+        LoginCredential $loginCredentials
+    )
     {
-        $this->loginCredentials = $loginCredentials;
-    }
-
-    /** @throws Exception */
-    public function getClient(): Client
-    {
-        if ($this->apiClient !== null) {
-            return $this->apiClient;
-        }
-
-        $this->login();
-
-        return $this->apiClient = new Client([
-            'verify' => false,
-            'base_uri' => $this->loginCredentials->apiUrl,
-            'timeout' => 8,
-            'headers' => [
-                'Authorization' => "Bearer {$this->authCredential->accessToken}",
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
+        parent::__construct($loginCredentials);
+        $this->apiClient = $apiClient;
     }
 
     /** @throws FurgonetkaApiException */
     public function get(string $uri, array $data = []): ResponseInterface
     {
         try {
-            return $this->getClient()->get($uri, [
+            return $this->getClient()->request('GET', $uri, [
                 'json' => $data,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->authCredential->accessToken,
+                ],
             ]);
-        } catch (ClientException $exception) {
+        } catch (GuzzleException $exception) {
             throw new FurgonetkaApiException(
                 $exception->getResponse()->getBody()->getContents(),
                 $exception->getResponse()->getStatusCode(),
@@ -61,14 +46,16 @@ class FurgonetkaClient extends FurgonetkaAuth
         }
     }
 
-    /** @throws FurgonetkaApiException */
     public function post(string $uri, array $data = []): ResponseInterface
     {
         try {
-            return $this->getClient()->post($uri, [
+            return $this->getClient()->request('POST', $uri, [
                 'json' => $data,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->authCredential->accessToken,
+                ],
             ]);
-        } catch (ClientException $exception) {
+        } catch (GuzzleException $exception) {
             throw new FurgonetkaApiException(
                 $exception->getResponse()->getBody()->getContents(),
                 $exception->getResponse()->getStatusCode(),
@@ -80,10 +67,13 @@ class FurgonetkaClient extends FurgonetkaAuth
     public function delete(string $uri, array $data = []): ResponseInterface
     {
         try {
-            return $this->getClient()->delete($uri, [
-                'json' => $data
+            return $this->getClient()->request('DELETE', $uri, [
+                'json' => $data,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->authCredential->accessToken,
+                ],
             ]);
-        } catch (ClientException $exception) {
+        } catch (GuzzleException $exception) {
             throw new FurgonetkaApiException(
                 $exception->getResponse()->getBody()->getContents(),
                 $exception->getResponse()->getStatusCode(),
@@ -95,14 +85,23 @@ class FurgonetkaClient extends FurgonetkaAuth
     public function put(string $uri, array $data = []): ResponseInterface
     {
         try {
-            return $this->getClient()->put($uri, [
+            return $this->getClient()->request('PUT', $uri, [
                 'json' => $data,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->authCredential->accessToken,
+                ],
             ]);
-        } catch (ClientException $exception) {
+        } catch (GuzzleException $exception) {
             throw new FurgonetkaApiException(
                 $exception->getResponse()->getBody()->getContents(),
                 $exception->getResponse()->getStatusCode(),
             );
         }
+    }
+
+    /** @throws Exception */
+    public function getClient(): ClientInterface
+    {
+        return $this->apiClient;
     }
 }

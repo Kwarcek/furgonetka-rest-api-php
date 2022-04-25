@@ -15,6 +15,7 @@ use Kwarcek\FurgonetkaRestApi\Request\RegulationRequest;
 /**
  * Trait RequestTrait
  * @package Kwarcek\FurgonetkaRestApi\Traits
+ * @deprecated
  */
 trait RequestTrait
 {

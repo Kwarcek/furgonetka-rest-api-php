@@ -2,7 +2,7 @@
 <h1>Furgonetka REST API PHP</h1>
 
 Source: <a href="https://furgonetka.pl/api/rest" target="_blank">Furgonetka REST API Docs</a>  
-API Version compatible: v1.0.22    
+API Version compatible: v1.0.23   
 Docs: Coming soon 🔜
 
 <h2>Basic usage</h2>
@@ -15,6 +15,15 @@ Docs: Coming soon 🔜
 
     use Kwarcek\FurgonetkaRestApi\FurgonetkaClient
     use Kwarcek\FurgonetkaRestApi\AuthCredential
+    use GuzzleHttp\Client;
+    use Kwarcek\FurgonetkaRestApi\Request\AccountRequest;
+    use Kwarcek\FurgonetkaRestApi\LoginCredential;
+
+    $client = new Client([
+        'base_uri' => LoginCredential::FURGONETKA_DEFAULT_TEST_API_URL,
+        'timeout' => 10,
+        'verify' => false,
+    ]);
     
     $credentials = new LoginCredential();
     $credentials->clientSecret = 'app-e781f17b79aaf0d1a44lh88469c9f6e5';
@@ -22,7 +31,8 @@ Docs: Coming soon 🔜
     $credentials->username = 'user@example.com';
     $credentials->password = 'secret123';
     
-    $client = new FurgonetkaClient($credentials);
+    $client = new FurgonetkaClient($client, $credentials);
+    $accountRequest = new AccountRequest($client);
 
 <h3>Get API access token</h3>
 
@@ -31,7 +41,7 @@ Docs: Coming soon 🔜
 
 <h3>Get carrier list</h3>
 
-    $carrierList = $client->account()->getCarrierList();
+    $carrierList = $accountRequest->getCarrierList();
 
 <h2>Donate</h2>
 <p><img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/svg/color/btc.svg" alt="btc">  BTC: 12iNBSSznWNYKwyPC6nrBBQVMNc638QheD</p>

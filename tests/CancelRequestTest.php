@@ -18,7 +18,7 @@ class CancelRequestTest extends TestCase
     {
         parent::setUp();
         $this->uuid = Uuid::uuid4()->toString();
-        $this->request = $this->client->cancel();
+        $this->request = new CancelRequest($this->client);
     }
 
     public function test_cancel_request_cancel_packages()

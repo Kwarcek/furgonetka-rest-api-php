@@ -16,7 +16,7 @@ class AcceptCarrierRegulations extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->regulation();
+        $this->request = new RegulationRequest($this->client);
     }
 
     public function test_accept_carrier_regulations()
@@ -25,28 +25,12 @@ class AcceptCarrierRegulations extends TestCase
         $regulationsArray = [];
 
         foreach ($regulations as $regulation) {
-            $regulation = $this->setRegulation($regulation);
-            $regulationsArray[] = $regulation;
+            $regulationObj = (new Regulation())->fromArray($regulation);
+            $regulationsArray[] = $regulationObj;
         }
 
         $response = $this->request->acceptCarrierRegulations($regulationsArray);
 
         $this->assertEquals(1, 1);
-    }
-
-    /**
-     * @param array $regulation
-     * @return Regulation
-     */
-    private function setRegulation(array $regulation): Regulation
-    {
-        $newRegulation = new Regulation();
-        $newRegulation->service = $regulation['service'];
-        $newRegulation->version = $regulation['version'];
-        $newRegulation->datetime = $regulation['datetime'];
-        $newRegulation->accepted = $regulation['accepted'];
-        $newRegulation->name = $regulation['service'];
-
-        return $newRegulation;
     }
 }

@@ -18,7 +18,7 @@ class AccountRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->account();
+        $this->request = new AccountRequest($this->client);
     }
 
     public function test_account_request_get_carrier_list()
@@ -107,7 +107,6 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->dpdAgreement($uuid, $agreement);
 
-        /** Async XD */
         sleep(2);
 
         $this->account_request_agreement_summary($uuid);
@@ -305,7 +304,7 @@ class AccountRequestTest extends TestCase
     }
 
     public function test_account_request_get_orlen_agreement()
-    {
+    { // todo
         $serviceId = '8800596';
 
         $response = $this->request->getOrlenAgreement($serviceId);

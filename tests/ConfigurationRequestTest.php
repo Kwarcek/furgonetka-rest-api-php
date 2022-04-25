@@ -15,7 +15,7 @@ class ConfigurationRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->configuration();
+        $this->request = new ConfigurationRequest($this->client);
     }
 
     public function test_configuration_request_get_allowed_countries()

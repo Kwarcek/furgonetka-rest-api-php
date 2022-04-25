@@ -10,6 +10,18 @@ class Regulation extends Entity
     public bool $accepted;
     public string $name;
 
+    public function fromArray(array $response): Regulation
+    {
+        $this->service = $response['service'];
+        $this->version = $response['version'];
+        $this->datetime = $response['datetime'];
+        $this->accepted = $response['accepted'];
+        $this->name = $response['name'];
+
+        return $this;
+
+    }
+
     public function toArray(): array
     {
         return [

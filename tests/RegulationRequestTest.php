@@ -18,7 +18,7 @@ class RegulationRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->regulation();
+        $this->request = new RegulationRequest($this->client);
     }
 
     public function test_regulation_request_get_regulations()

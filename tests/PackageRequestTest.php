@@ -3,6 +3,12 @@
 namespace Kwarcek\FurgonetkaRestApi\Test;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Service;
+use Kwarcek\FurgonetkaRestApi\Factory\AdditionalServiceFactory;
+use Kwarcek\FurgonetkaRestApi\Factory\PackageFactory;
+use Kwarcek\FurgonetkaRestApi\Factory\ParcelFactory;
+use Kwarcek\FurgonetkaRestApi\Factory\PickupFactory;
+use Kwarcek\FurgonetkaRestApi\Factory\ReceiverFactory;
+use Kwarcek\FurgonetkaRestApi\Factory\SenderFactory;
 use Kwarcek\FurgonetkaRestApi\Request\PackageRequest;
 use Ramsey\Uuid\Uuid;
 
@@ -17,7 +23,7 @@ class PackageRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->request = $this->client->package();
+        $this->request = new PackageRequest($this->client);
     }
 
     public function test_package_request_get_packages_list()
@@ -39,18 +45,19 @@ class PackageRequestTest extends TestCase
 
     public function test_package_request_validate_package()
     {
-        $package = $this->helper->getPackage();
+        $packageObject = PackageFactory::getEntity();
+        $packageResponse = $this->helper->addPackage();
 
         $response = $this->request->validatePackage(
-            $package->pickup,
-            $package->receiver,
-            $package->serviceId,
-            $package->parcels,
-            $package->sender,
-            $package->additionalServices,
-            $package->type,
-            $package->userReferenceNumber,
-            $package->payer
+            $packageObject->pickup,
+            $packageObject->receiver,
+            $packageObject->serviceId,
+            $packageObject->parcels,
+            $packageObject->sender,
+            $packageObject->additionalServices,
+            $packageObject->type,
+            $packageObject->userReferenceNumber,
+            $packageObject->payer
         );
 
         $this->assertEquals($response['code'], 204);
@@ -130,12 +137,12 @@ class PackageRequestTest extends TestCase
 
         $response = $this->request->editPackage(
             $packageId,
-            $this->helper->getPickup(),
-            $this->helper->getReceiver(),
+            PickupFactory::getEntity(),
+            ReceiverFactory::getEntity(),
             $serviceId,
-            $this->helper->getParcel(),
-            $this->helper->getSender(),
-            $this->helper->getAdditionalServices()
+            ParcelFactory::getEntity(),
+            SenderFactory::getEntity(),
+            AdditionalServiceFactory::getEntity()
         );
 
         $this->assertEquals($response['code'], 200);
@@ -143,7 +150,7 @@ class PackageRequestTest extends TestCase
 
     public function test_package_request_calculate_package_price()
     {
-        $package = $this->helper->getPackage();
+        $package = PackageFactory::getEntity();
         $service = new Service();
 
         $service->service = [
