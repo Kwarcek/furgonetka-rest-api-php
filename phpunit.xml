@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<phpunit bootstrap="vendor/autoload.php">
+    <testsuits>
+        <testsuit name="unit">
+            <directory>tests</directory>
+        </testsuit>
+    </testsuits>
+    <php>
+        <server name="APP_ENV" value="testing"/>
+    </php>
+</phpunit>
