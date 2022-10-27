@@ -10,16 +10,16 @@ class Regulation extends Entity
     public bool $accepted;
     public string $name;
 
-    public function fromArray(array $response): Regulation
+    public static function fromArray(array $response): self
     {
-        $this->service = $response['service'];
-        $this->version = $response['version'];
-        $this->datetime = $response['datetime'];
-        $this->accepted = $response['accepted'];
-        $this->name = $response['name'];
+        $regulation = new self;
+        $regulation->service = $response['service'];
+        $regulation->version = $response['version'];
+        $regulation->datetime = $response['datetime'];
+        $regulation->accepted = $response['accepted'];
+        $regulation->name = $response['name'];
 
-        return $this;
-
+        return $regulation;
     }
 
     public function toArray(): array
