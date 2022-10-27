@@ -57,7 +57,7 @@ class PointRequestTest extends TestCase
 
         $response = $this->request->getMapPoints($location, $filter);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertGreaterThan(0, count($response['data']));
     }
 }

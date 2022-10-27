@@ -25,8 +25,7 @@ class AcceptCarrierRegulations extends TestCase
         $regulationsArray = [];
 
         foreach ($regulations as $regulation) {
-            $regulationObj = (new Regulation())->fromArray($regulation);
-            $regulationsArray[] = $regulationObj;
+            $regulationsArray[] = Regulation::fromArray($regulation);
         }
 
         $response = $this->request->acceptCarrierRegulations($regulationsArray);

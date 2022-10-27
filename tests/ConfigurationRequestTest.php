@@ -22,7 +22,7 @@ class ConfigurationRequestTest extends TestCase
     {
         $response = $this->request->getAllowedCountries();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('shipment', $response['data']);
         $this->assertGreaterThan(0, count($response['data']['shipment']));
     }
@@ -31,7 +31,7 @@ class ConfigurationRequestTest extends TestCase
     {
         $response = $this->request->getCarriersStatements();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('servicesStatements', $response['data']);
         $this->assertGreaterThan(0, count($response['data']['servicesStatements']));
     }

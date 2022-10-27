@@ -25,7 +25,7 @@ class AccountRequestTest extends TestCase
     {
         $response = $this->request->getCarrierList();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertGreaterThan(0, count($response['data']['services']));
     }
 
@@ -33,14 +33,14 @@ class AccountRequestTest extends TestCase
     {
         $response = $this->request->getOAuthData('');
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_get_account_advanced_settings()
     {
         $response = $this->request->getAccountAdvancedSettings();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('user_reference_number', $response['data']);
     }
@@ -49,7 +49,7 @@ class AccountRequestTest extends TestCase
     {
         $response = $this->request->getlistOfShipmentTemplates();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
     }
 
@@ -57,7 +57,7 @@ class AccountRequestTest extends TestCase
     {
         $response = $this->request->getListOfEntriesInTheAddressBook();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
     }
 
@@ -82,7 +82,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->dhlAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_dpd_agreement() //todo
@@ -111,7 +111,7 @@ class AccountRequestTest extends TestCase
 
         $this->account_request_agreement_summary($uuid);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_fedex_agreement() //todo
@@ -136,7 +136,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->fedexAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_gls_agreement() //todo
@@ -154,7 +154,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->glsAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_inpost_agreement() //todo
@@ -173,7 +173,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->inpostAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_orlen_agreement() //todo
@@ -191,7 +191,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->orlenAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_poczta_polska_agreement() //todo
@@ -210,7 +210,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->pocztaPolskaAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_ups_agreement() //todo
@@ -229,14 +229,14 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->upsAgreement($uuid, $agreement);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function account_request_agreement_summary(string $uuid) //todo
     {
         $response = $this->request->agreementSummary($uuid);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_delete_agreement() //todo
@@ -245,7 +245,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->deleteAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_account_request_get_dhl_agreement()
@@ -254,7 +254,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getDhlAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -265,7 +265,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getDpdAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -276,7 +276,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getFedexAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -287,7 +287,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getGlsAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -298,7 +298,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getInpostAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -309,7 +309,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getOrlenAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -320,7 +320,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getPocztaPolskaAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }
@@ -331,7 +331,7 @@ class AccountRequestTest extends TestCase
 
         $response = $this->request->getUpsAgreement($serviceId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertLessThan(count($response['data']), 0);
         $this->assertArrayHasKey('credentials',$response['data']);
     }

@@ -55,7 +55,7 @@ class PickupRequestTest extends TestCase
 
         $this->pickup_request_order_courier_drive_summary($uuid);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertGreaterThan(0, count($response['data']));
     }
 
@@ -63,7 +63,7 @@ class PickupRequestTest extends TestCase
     {
         $response = $this->request->orderCourierDriveSummary($uuid);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertGreaterThan(0, count($response['data']));
     }
 }

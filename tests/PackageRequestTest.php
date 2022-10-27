@@ -38,13 +38,13 @@ class PackageRequestTest extends TestCase
     {
         $response = $this->helper->addPackage();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('data', $response);
         $this->assertArrayHasKey('package_id', $response['data']);
     }
 
     public function test_package_request_validate_package()
-    {
+    { // todo
         $packageObject = PackageFactory::getEntity();
         $packageResponse = $this->helper->addPackage();
 
@@ -60,7 +60,7 @@ class PackageRequestTest extends TestCase
             $packageObject->payer
         );
 
-        $this->assertEquals($response['code'], 204);
+        $this->assertEquals(204, $response['code']);
         $this->assertArrayHasKey('data', $response);
     }
 
@@ -70,7 +70,7 @@ class PackageRequestTest extends TestCase
 
         $response = $this->request->trackShipment($packageId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_package_request_get_pickup_date_proposition()
@@ -84,7 +84,7 @@ class PackageRequestTest extends TestCase
             (object) ['id' => $packageId]
         ], $readyDate);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('packages', $response['data']);
     }
 
@@ -99,7 +99,7 @@ class PackageRequestTest extends TestCase
             (object) ['id' => $packageId]
         ]);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertEquals(null, $response['data']);
     }
 
@@ -109,7 +109,7 @@ class PackageRequestTest extends TestCase
 
         $response = $this->request->getLabel($packageId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_package_request_get_package_details()
@@ -117,7 +117,7 @@ class PackageRequestTest extends TestCase
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $response = $this->request->getPackageDetails($packageId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('package_id', $response['data']);
     }
 
@@ -126,8 +126,8 @@ class PackageRequestTest extends TestCase
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $response = $this->request->deletePackage($packageId);
 
-        $this->assertEquals($response['code'], 204);
-        $this->assertEquals($response['data'], null);
+        $this->assertEquals(204, $response['code']);
+        $this->assertEquals(null, $response['data']);
     }
 
     public function test_package_request_edit_package() // todo
@@ -145,7 +145,7 @@ class PackageRequestTest extends TestCase
             AdditionalServiceFactory::getEntity()
         );
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
     }
 
     public function test_package_request_calculate_package_price()
@@ -167,7 +167,7 @@ class PackageRequestTest extends TestCase
 
         $response = $this->request->calculatePackagePrice($package, $service);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('services_prices', $response['data']);
     }
 
@@ -177,16 +177,18 @@ class PackageRequestTest extends TestCase
 
         $response = $this->request->addPackageToTracking($packageId);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('package_id', $response['data']);
     }
 
     public function test_package_request_delete_packages()
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
-        $response = $this->request->deletePackages([(object)['id' => $packageId]]);
+        $response = $this->request->deletePackages([
+            (object)['id' => $packageId]
+        ]);
 
-        $this->assertEquals($response['code'], 204);
-        $this->assertEquals($response['data'], null);
+        $this->assertEquals(204, $response['code']);
+        $this->assertEquals(null, $response['data']);
     }
 }

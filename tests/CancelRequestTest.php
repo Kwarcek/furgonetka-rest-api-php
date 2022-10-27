@@ -26,14 +26,15 @@ class CancelRequestTest extends TestCase
         $packageId = $this->helper->addPackage()['data']['package_id'];
 
         $response = $this->request->cancelPackages(
-            $this->uuid,
-            [(object) ['id' => $packageId]]
+            $this->uuid, [
+                (object) ['id' => $packageId]
+            ]
         );
 
         $this->cancel_request_cancel_packages_summary();
 
-        $this->assertEquals($response['code'], 200);
-        $this->assertEquals(1, count($response['data']));
+        $this->assertEquals(200, $response['code']);
+        $this->assertCount(1, $response['data']);
         $this->assertArrayHasKey('uuid', $response['data']);
     }
 
@@ -43,7 +44,7 @@ class CancelRequestTest extends TestCase
             $this->uuid,
         );
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertGreaterThanOrEqual(1, count($response['data']));
         $this->assertArrayHasKey('status', $response['data']);
     }

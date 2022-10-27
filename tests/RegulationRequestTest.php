@@ -22,7 +22,7 @@ class RegulationRequestTest extends TestCase
     }
 
     public function test_regulation_request_get_regulations()
-    {
+    { // todo
         $response = $this->request->getRegulations();
         $regulations = $response['data']['regulations'];
 
@@ -47,7 +47,7 @@ class RegulationRequestTest extends TestCase
             $regulation
         ]);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertGreaterThan(0, count($response['data']));
     }
 }

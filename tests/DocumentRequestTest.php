@@ -35,7 +35,7 @@ class DocumentRequestTest extends TestCase
 
         $this->document_request_get_documents_summary($uuid);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('uuid', $response['data']);
     }
 
@@ -43,7 +43,7 @@ class DocumentRequestTest extends TestCase
     {
         $response = $this->request->getDocumentsSummary($uuid);
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('status', $response['data']);
     }
 }

@@ -22,7 +22,7 @@ class FinanceRequestTest extends TestCase
     {
         $response = $this->request->getListOfTransfers();
 
-        $this->assertEquals($response['code'], 200);
+        $this->assertEquals(200, $response['code']);
         $this->assertArrayHasKey('transfers', $response['data']);
     }
 }

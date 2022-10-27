@@ -8,12 +8,13 @@ use GuzzleHttp\Client;
 use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\LoginCredential;
 use Kwarcek\FurgonetkaRestApi\Test\Helpers\RequestHelper;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
 /**
  * Class TestCase
  * @package Kwarcek\FurgonetkaRestApi\Test
  */
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends BaseTestCase
 {
     public const DEFAULT_CARRIER = 'dpd';
 
@@ -27,7 +28,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->helper = new RequestHelper($this->client);
     }
 
-    protected function getFurgonetkaClient(): FurgonetkaClient
+    private function getFurgonetkaClient(): FurgonetkaClient
     {
         $credentials = new LoginCredential();
         $credentials->clientSecret = '';
