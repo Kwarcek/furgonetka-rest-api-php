@@ -24,7 +24,20 @@ class PointRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param Location $location
+     * @param Filter $filter
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              points: object[],
+     *              coordinates: object,
+     *              recentlySelectedPoints: object[],
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getMapPoints(Location $location, Filter $filter): array
     {
         $response = $this->client->post(

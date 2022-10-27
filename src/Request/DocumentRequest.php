@@ -15,8 +15,8 @@ class DocumentRequest extends Request
 {
     use ResponseTrait;
 
-    const DOCUMENT_TYPE_LABELS = 'labels';
-    const DOCUMENT_PROTOCOLS_OTHERS = 'protocols_others';
+    public const DOCUMENT_TYPE_LABELS = 'labels';
+    public const DOCUMENT_PROTOCOLS_OTHERS = 'protocols_others';
 
     protected FurgonetkaClient $client;
 
@@ -25,7 +25,21 @@ class DocumentRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              status: string,
+     *              datetime_change: string|null,
+     *              errors: object[],
+     *              uuid: string,
+     *              url: string|null,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getDocumentsSummary(string $uuid): array
     {
         $response = $this->client->get("/documents-command/{$uuid}");
@@ -33,7 +47,19 @@ class DocumentRequest extends Request
         return $this->response($response);
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     * @param object[] $packages
+     * @param string[] $documentsTypes
+     * @param Label|null $label
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              uuid: string,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getDocuments(
         string $uuid,
         array $packages,

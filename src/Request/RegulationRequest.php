@@ -2,6 +2,7 @@
 
 namespace Kwarcek\FurgonetkaRestApi\Request;
 
+use Kwarcek\FurgonetkaRestApi\Entity\Regulation;
 use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaApiException;
 use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\Traits\ResponseTrait;
@@ -21,7 +22,15 @@ class RegulationRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              regulations: object[],
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getRegulations(): array
     {
         $response = $this->client->get('/regulations');
@@ -29,7 +38,16 @@ class RegulationRequest extends Request
         return $this->response($response);
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param Regulation[] $regulations
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              regulations: object[],
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function acceptCarrierRegulations(array $regulations): array
     {
         $response = $this->client->post('/regulations', [

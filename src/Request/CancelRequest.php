@@ -21,7 +21,21 @@ class CancelRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              status: string,
+     *              datetime_change: string|null,
+     *              errors: object[],
+     *              uuid: string,
+     *              cancel_command_details: object[],
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function cancelPackagesSummary(string $uuid): array
     {
         $response = $this->client->get("/cancel-command/{$uuid}");
@@ -29,7 +43,18 @@ class CancelRequest extends Request
         return $this->response($response);
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     * @param array[] $uuid
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              uuid: string,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function cancelPackages(string $uuid, array $packages): array
     {
         $response = $this->client->put(

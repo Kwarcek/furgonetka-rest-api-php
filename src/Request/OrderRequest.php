@@ -22,15 +22,40 @@ class OrderRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
-    public function orderShipmentsSummary(string $uuid)
+    /**
+     * @param string $uuid
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              status: string,
+     *              datetime_change: string|null,
+     *              errors: object[],
+     *              uuid: string,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
+    public function orderShipmentsSummary(string $uuid): array
     {
         $response = $this->client->get("/order-commands/{$uuid}");
 
         return $this->response($response);
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     * @param object[] $packages
+     * @param ?Label $label
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              uuid: string,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function orderShipments(
         string $uuid,
         array $packages,

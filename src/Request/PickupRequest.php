@@ -22,17 +22,42 @@ class PickupRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              status: string,
+     *              datetime_change: string|null,
+     *              errors: array,
+     *              uuid: string,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function orderCourierDriveSummary(string $uuid): array
     {
         $response = $this->client->get(
-            '/pickup-commands/'.$uuid,
+                '/pickup-commands/'.$uuid,
         );
 
         return $this->response($response);
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param string $uuid
+     * @param array $packages
+     * @param PickupDate $pickupDate
+     *
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              uuid: string,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function orderCourierDrive(
         string $uuid,
         array $packages,

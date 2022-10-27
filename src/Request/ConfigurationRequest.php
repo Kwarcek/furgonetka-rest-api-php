@@ -21,7 +21,17 @@ class ConfigurationRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              shipment: object[],
+     *              delivery: object[],
+     *              regions: object,
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getAllowedCountries(): array
     {
         $response = $this->client->get('/configuration/allowed-countries');
@@ -29,7 +39,15 @@ class ConfigurationRequest extends Request
         return $this->response($response);
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              servicesStatements: object[],
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getCarriersStatements(): array
     {
         $response = $this->client->get('/configuration/services-statements');

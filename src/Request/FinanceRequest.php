@@ -21,10 +21,21 @@ class FinanceRequest extends Request
         $this->client = $client;
     }
 
-    /** @throws FurgonetkaApiException */
+    /**
+     * @param int $limit
+     * @param string $lastTransferUuid
+     * @param string[] $transferType
+     * @return array{
+     *            code: integer,
+     *            data: array{
+     *              transfers: object[],
+     *             },
+     *        }
+     * @throws FurgonetkaApiException
+     */
     public function getListOfTransfers(
         int $limit = 50,
-        string $lastTransferUuid = null,
+        string $lastTransferUuid = '',
         array $transferType = []
     ): array
     {
