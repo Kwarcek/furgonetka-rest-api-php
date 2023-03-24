@@ -13,6 +13,6 @@
               processUncoveredFiles="true">
     </coverage>
     <php>
-        <server name="APP_ENV" value="testing"/>
+        <server name="APP_ENV" value="development"/>
     </php>
 </phpunit>
