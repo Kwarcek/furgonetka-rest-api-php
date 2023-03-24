@@ -20,7 +20,7 @@ class DocumentRequestTest extends TestCase
         $this->request = new DocumentRequest($this->client);
     }
 
-    public function test_document_request_get_documents()
+    public function test_document_request_get_documents(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $uuid = Uuid::uuid4()->toString();
@@ -40,7 +40,7 @@ class DocumentRequestTest extends TestCase
         $this->assertArrayHasKey('uuid', $response['data']);
     }
 
-    public function document_request_get_documents_summary(string $uuid)
+    public function document_request_get_documents_summary(string $uuid): void
     {
         $response = $this->request->getDocumentsSummary($uuid);
 

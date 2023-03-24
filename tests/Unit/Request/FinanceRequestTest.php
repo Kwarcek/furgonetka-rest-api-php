@@ -19,7 +19,7 @@ class FinanceRequestTest extends TestCase
         $this->request = new FinanceRequest($this->client);
     }
 
-    public function test_finance_get_list_of_transfers()
+    public function test_finance_get_list_of_transfers(): void
     {
         $response = $this->request->getListOfTransfers();
 

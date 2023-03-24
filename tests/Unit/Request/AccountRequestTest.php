@@ -22,7 +22,7 @@ class AccountRequestTest extends TestCase
         $this->request = new AccountRequest($this->client);
     }
 
-    public function test_account_request_get_carrier_list()
+    public function test_account_request_get_carrier_list(): void
     {
         $response = $this->request->getCarrierList();
 
@@ -30,14 +30,14 @@ class AccountRequestTest extends TestCase
         $this->assertGreaterThan(0, count($response['data']['services']));
     }
 
-    public function test_account_request_get_oauth_data() // todo
+    public function test_account_request_get_oauth_data(): void // todo
     {
         $response = $this->request->getOAuthData('');
 
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_get_account_advanced_settings()
+    public function test_account_request_get_account_advanced_settings(): void
     {
         $response = $this->request->getAccountAdvancedSettings();
 
@@ -46,7 +46,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('user_reference_number', $response['data']);
     }
 
-    public function test_account_request_get_list_of_shipment_templates()
+    public function test_account_request_get_list_of_shipment_templates(): void
     {
         $response = $this->request->getlistOfShipmentTemplates();
 
@@ -54,7 +54,7 @@ class AccountRequestTest extends TestCase
         $this->assertLessThan(count($response['data']), 0);
     }
 
-    public function test_account_request_get_list_of_entries_in_the_address_book()
+    public function test_account_request_get_list_of_entries_in_the_address_book(): void
     {
         $response = $this->request->getListOfEntriesInTheAddressBook();
 
@@ -62,7 +62,7 @@ class AccountRequestTest extends TestCase
         $this->assertLessThan(count($response['data']), 0);
     }
 
-    public function test_account_request_dhl_agreement() //todo
+    public function test_account_request_dhl_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -86,7 +86,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_dpd_agreement() //todo
+    public function test_account_request_dpd_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -115,7 +115,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_fedex_agreement() //todo
+    public function test_account_request_fedex_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -140,7 +140,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_gls_agreement() //todo
+    public function test_account_request_gls_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -158,7 +158,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_inpost_agreement() //todo
+    public function test_account_request_inpost_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -177,7 +177,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_orlen_agreement() //todo
+    public function test_account_request_orlen_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -195,7 +195,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_poczta_polska_agreement() //todo
+    public function test_account_request_poczta_polska_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -214,7 +214,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_ups_agreement() //todo
+    public function test_account_request_ups_agreement(): void //todo
     {
         $uuid = Uuid::uuid4()->toString();
 
@@ -233,14 +233,14 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function account_request_agreement_summary(string $uuid) //todo
+    public function account_request_agreement_summary(string $uuid): void //todo
     {
         $response = $this->request->agreementSummary($uuid);
 
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_delete_agreement() //todo
+    public function test_account_request_delete_agreement(): void //todo
     {
         $serviceId = '8800592';
 
@@ -249,7 +249,7 @@ class AccountRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_account_request_get_dhl_agreement()
+    public function test_account_request_get_dhl_agreement(): void
     {
         $serviceId = '8800600';
 
@@ -260,7 +260,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_dpd_agreement()
+    public function test_account_request_get_dpd_agreement(): void
     {
         $serviceId = '8800592';
 
@@ -271,7 +271,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_fedex_agreement()
+    public function test_account_request_get_fedex_agreement(): void
     {
         $serviceId = '8800593';
 
@@ -282,7 +282,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_gls_agreement()
+    public function test_account_request_get_gls_agreement(): void
     {
         $serviceId = '8800595';
 
@@ -293,7 +293,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_inpost_agreement()
+    public function test_account_request_get_inpost_agreement(): void
     {
         $serviceId = '8800597';
 
@@ -304,7 +304,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_orlen_agreement()
+    public function test_account_request_get_orlen_agreement(): void
     { // todo
         $serviceId = '8800596';
 
@@ -315,7 +315,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_poczta_polska_agreement()
+    public function test_account_request_get_poczta_polska_agreement(): void
     {
         $serviceId = '8800596';
 
@@ -326,7 +326,7 @@ class AccountRequestTest extends TestCase
         $this->assertArrayHasKey('credentials',$response['data']);
     }
 
-    public function test_account_request_get_ups_agreement()
+    public function test_account_request_get_ups_agreement(): void
     {
         $serviceId = '8800594';
 

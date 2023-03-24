@@ -22,7 +22,7 @@ class CancelRequestTest extends TestCase
         $this->request = new CancelRequest($this->client);
     }
 
-    public function test_cancel_request_cancel_packages()
+    public function test_cancel_request_cancel_packages(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
 
@@ -39,7 +39,7 @@ class CancelRequestTest extends TestCase
         $this->assertArrayHasKey('uuid', $response['data']);
     }
 
-    public function cancel_request_cancel_packages_summary()
+    public function cancel_request_cancel_packages_summary(): void
     {
         $response = $this->request->cancelPackagesSummary(
             $this->uuid,

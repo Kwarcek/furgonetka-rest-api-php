@@ -19,7 +19,7 @@ class ConfigurationRequestTest extends TestCase
         $this->request = new ConfigurationRequest($this->client);
     }
 
-    public function test_configuration_request_get_allowed_countries()
+    public function test_configuration_request_get_allowed_countries(): void
     {
         $response = $this->request->getAllowedCountries();
 
@@ -28,7 +28,7 @@ class ConfigurationRequestTest extends TestCase
         $this->assertGreaterThan(0, count($response['data']['shipment']));
     }
 
-    public function test_configuration_request_get_carriers_statements()
+    public function test_configuration_request_get_carriers_statements(): void
     {
         $response = $this->request->getCarriersStatements();
 

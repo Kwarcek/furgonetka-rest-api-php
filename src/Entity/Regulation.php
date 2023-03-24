@@ -10,6 +10,10 @@ class Regulation extends Entity
     public bool $accepted;
     public string $name;
 
+    /**
+     * @param array{version: int, service: string, datetime: string, accepted: bool, name: string} $response
+     * @return static
+     */
     public static function fromArray(array $response): self
     {
         $regulation = new self;

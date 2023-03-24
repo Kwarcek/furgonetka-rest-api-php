@@ -27,7 +27,7 @@ class PackageRequestTest extends TestCase
         $this->request = new PackageRequest($this->client);
     }
 
-    public function test_package_request_get_packages_list()
+    public function test_package_request_get_packages_list(): void
     {
         $response = $this->request->getPackagesList();
 
@@ -35,7 +35,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('packages', $response['data']);
     }
 
-    public function test_package_request_add_package()
+    public function test_package_request_add_package(): void
     {
         $response = $this->helper->addPackage();
 
@@ -44,7 +44,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('package_id', $response['data']);
     }
 
-    public function test_package_request_validate_package()
+    public function test_package_request_validate_package(): void
     { // todo
         $packageObject = PackageFactory::getEntity();
         $packageResponse = $this->helper->addPackage();
@@ -65,7 +65,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('data', $response);
     }
 
-    public function test_package_request_track_shipment() // todo
+    public function test_package_request_track_shipment(): void // todo
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
 
@@ -74,7 +74,7 @@ class PackageRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_package_request_get_pickup_date_proposition()
+    public function test_package_request_get_pickup_date_proposition(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $readyDate = (new \DateTime())
@@ -89,7 +89,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('packages', $response['data']);
     }
 
-    public function test_package_request_generate_protocol()
+    public function test_package_request_generate_protocol(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $this->helper->orderShipments(Uuid::uuid4()->toString(), [(object)['id' => $packageId]]);
@@ -104,7 +104,7 @@ class PackageRequestTest extends TestCase
         $this->assertEquals(null, $response['data']);
     }
 
-    public function test_package_request_get_label() // todo
+    public function test_package_request_get_label(): void // todo
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
 
@@ -113,7 +113,7 @@ class PackageRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_package_request_get_package_details()
+    public function test_package_request_get_package_details(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $response = $this->request->getPackageDetails($packageId);
@@ -122,7 +122,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('package_id', $response['data']);
     }
 
-    public function test_package_request_delete_package()
+    public function test_package_request_delete_package(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $response = $this->request->deletePackage($packageId);
@@ -131,10 +131,10 @@ class PackageRequestTest extends TestCase
         $this->assertEquals(null, $response['data']);
     }
 
-    public function test_package_request_edit_package() // todo
+    public function test_package_request_edit_package(): void // todo
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
-        $serviceId = '8800592';
+        $serviceId = 8800592;
 
         $response = $this->request->editPackage(
             $packageId,
@@ -149,7 +149,7 @@ class PackageRequestTest extends TestCase
         $this->assertEquals(200, $response['code']);
     }
 
-    public function test_package_request_calculate_package_price()
+    public function test_package_request_calculate_package_price(): void
     {
         $package = PackageFactory::getEntity();
         $service = new Service();
@@ -172,7 +172,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('services_prices', $response['data']);
     }
 
-    public function test_package_request_add_package_to_tracking()
+    public function test_package_request_add_package_to_tracking(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
 
@@ -182,7 +182,7 @@ class PackageRequestTest extends TestCase
         $this->assertArrayHasKey('package_id', $response['data']);
     }
 
-    public function test_package_request_delete_packages()
+    public function test_package_request_delete_packages(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $response = $this->request->deletePackages([

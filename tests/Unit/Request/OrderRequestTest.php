@@ -22,7 +22,7 @@ class OrderRequestTest extends TestCase
         $this->request = new OrderRequest($this->client);
     }
 
-    public function test_order_request_order_shipments()
+    public function test_order_request_order_shipments(): void
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
         $response = $this->request->orderShipments(
@@ -37,7 +37,7 @@ class OrderRequestTest extends TestCase
         $this->assertArrayHasKey('uuid', $response['data']);
     }
 
-    public function order_request_order_shipments_summary()
+    public function order_request_order_shipments_summary(): void
     {
         $response = $this->request->orderShipmentsSummary($this->uuid);
 

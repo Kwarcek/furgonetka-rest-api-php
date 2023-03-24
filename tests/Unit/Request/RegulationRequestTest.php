@@ -22,7 +22,7 @@ class RegulationRequestTest extends TestCase
         $this->request = new RegulationRequest($this->client);
     }
 
-    public function test_regulation_request_get_regulations()
+    public function test_regulation_request_get_regulations(): void
     { // todo
         $response = $this->request->getRegulations();
         $regulations = $response['data']['regulations'];
@@ -37,12 +37,8 @@ class RegulationRequestTest extends TestCase
 
     public function regulation_request_accept_carrier_regulations(array $dpd)
     {
-        $regulation = new Regulation();
-        $regulation->service = $dpd['service'];
-        $regulation->version = $dpd['version'];
-        $regulation->datetime = $dpd['datetime'];
-        $regulation->accepted = $dpd['accepted'];
-        $regulation->name = self::REGULATION_NAME;
+        $dpd['name'] = self::REGULATION_NAME;
+        $regulation = Regulation::fromArray($dpd);
 
         $response = $this->request->acceptCarrierRegulations([
             $regulation

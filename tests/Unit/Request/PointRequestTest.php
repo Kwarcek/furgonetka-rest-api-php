@@ -24,7 +24,7 @@ class PointRequestTest extends TestCase
         $this->request = new PointRequest($this->client);
     }
 
-    public function test_point_request_get_map_points()
+    public function test_point_request_get_map_points(): void
     {
         $coordinate = new Coordinate();
         $coordinate->latitude = 52.2217652; // Warsaw

@@ -22,7 +22,7 @@ class PickupRequestTest extends TestCase
         $this->request = new PickupRequest($this->client);
     }
 
-    public function test_pickup_request_order_courier_drive()
+    public function test_pickup_request_order_courier_drive(): void
     {
         $helper = new RequestHelper($this->client);
         $packageId = $helper->addPackage()['data']['package_id'];
@@ -60,7 +60,7 @@ class PickupRequestTest extends TestCase
         $this->assertGreaterThan(0, count($response['data']));
     }
 
-    public function pickup_request_order_courier_drive_summary(string $uuid)
+    public function pickup_request_order_courier_drive_summary(string $uuid): void
     {
         $response = $this->request->orderCourierDriveSummary($uuid);
 

@@ -20,7 +20,7 @@ class AcceptCarrierRegulations extends TestCase
         $this->request = new RegulationRequest($this->client);
     }
 
-    public function test_accept_carrier_regulations()
+    public function test_accept_carrier_regulations(): void
     { //todo
         $regulations = $this->request->getRegulations()['data']['regulations'];
         $regulationsArray = [];
