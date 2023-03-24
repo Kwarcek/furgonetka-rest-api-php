@@ -1,8 +1,9 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Request\DocumentRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**

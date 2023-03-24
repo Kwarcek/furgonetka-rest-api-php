@@ -1,6 +1,6 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Service;
 use Kwarcek\FurgonetkaRestApi\Factory\AdditionalServiceFactory;
@@ -10,6 +10,7 @@ use Kwarcek\FurgonetkaRestApi\Factory\PickupFactory;
 use Kwarcek\FurgonetkaRestApi\Factory\ReceiverFactory;
 use Kwarcek\FurgonetkaRestApi\Factory\SenderFactory;
 use Kwarcek\FurgonetkaRestApi\Request\PackageRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**

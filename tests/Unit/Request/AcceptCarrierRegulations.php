@@ -1,9 +1,10 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Regulation;
 use Kwarcek\FurgonetkaRestApi\Request\RegulationRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 
 /**
  * Class AccountRequestTest

@@ -1,10 +1,11 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Agreement;
 use Kwarcek\FurgonetkaRestApi\Entity\Credential;
 use Kwarcek\FurgonetkaRestApi\Request\AccountRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**

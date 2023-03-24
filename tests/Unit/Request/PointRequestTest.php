@@ -1,6 +1,6 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\Address;
 use Kwarcek\FurgonetkaRestApi\Entity\Coordinate;
@@ -8,6 +8,7 @@ use Kwarcek\FurgonetkaRestApi\Entity\Filter;
 use Kwarcek\FurgonetkaRestApi\Entity\Location;
 use Kwarcek\FurgonetkaRestApi\Entity\MapBound;
 use Kwarcek\FurgonetkaRestApi\Request\PointRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 
 /**
  * Class PointRequestTest

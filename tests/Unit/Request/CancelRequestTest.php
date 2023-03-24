@@ -1,47 +1,52 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
-use Kwarcek\FurgonetkaRestApi\Request\OrderRequest;
+use Kwarcek\FurgonetkaRestApi\Request\CancelRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class OrderRequestTest
+ * Class CancelRequestTest
  * @package Kwarcek\FurgonetkaRestApi\Test
  */
-class OrderRequestTest extends TestCase
+class CancelRequestTest extends TestCase
 {
-    private OrderRequest $request;
+    private CancelRequest $request;
     private string $uuid;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->uuid = Uuid::uuid4()->toString();
-        $this->request = new OrderRequest($this->client);
+        $this->request = new CancelRequest($this->client);
     }
 
-    public function test_order_request_order_shipments()
+    public function test_cancel_request_cancel_packages()
     {
         $packageId = $this->helper->addPackage()['data']['package_id'];
-        $response = $this->request->orderShipments(
+
+        $response = $this->request->cancelPackages(
             $this->uuid, [
                 (object) ['id' => $packageId]
             ]
         );
-        $this->order_request_order_shipments_summary();
+
+        $this->cancel_request_cancel_packages_summary();
 
         $this->assertEquals(200, $response['code']);
         $this->assertCount(1, $response['data']);
         $this->assertArrayHasKey('uuid', $response['data']);
     }
 
-    public function order_request_order_shipments_summary()
+    public function cancel_request_cancel_packages_summary()
     {
-        $response = $this->request->orderShipmentsSummary($this->uuid);
+        $response = $this->request->cancelPackagesSummary(
+            $this->uuid,
+        );
 
         $this->assertEquals(200, $response['code']);
-        $this->assertGreaterThan(0, count($response['data']));
+        $this->assertGreaterThanOrEqual(1, count($response['data']));
         $this->assertArrayHasKey('status', $response['data']);
     }
 }

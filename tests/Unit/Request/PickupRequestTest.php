@@ -1,10 +1,11 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Entity\PickupDate;
 use Kwarcek\FurgonetkaRestApi\Request\PickupRequest;
 use Kwarcek\FurgonetkaRestApi\Test\Helpers\RequestHelper;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**

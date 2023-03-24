@@ -1,8 +1,9 @@
 <?php
 
-namespace Kwarcek\FurgonetkaRestApi\Test;
+namespace Kwarcek\FurgonetkaRestApi\Test\Unit\Request;
 
 use Kwarcek\FurgonetkaRestApi\Request\FinanceRequest;
+use Kwarcek\FurgonetkaRestApi\Test\TestCase;
 
 /**
  * Class FinanceRequestTest
