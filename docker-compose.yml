@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  php:
+    container_name: furgonetka-rest-api-php
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    tty: true
+    volumes:
+      - ./:/app
