@@ -31,10 +31,10 @@ abstract class TestCase extends BaseTestCase
     private function getFurgonetkaClient(): FurgonetkaClient
     {
         $credentials = new LoginCredential();
-        $credentials->clientSecret = '';
-        $credentials->clientId = '';
-        $credentials->username = '';
-        $credentials->password = '';
+        $credentials->clientSecret = getenv('FURGONETKA_CLIENT_SECRET');
+        $credentials->clientId = getenv('FURGONETKA_CLIENT_ID');
+        $credentials->username = getenv('FURGONETKA_USERNAME');
+        $credentials->password = getenv('FURGONETKA_PASSWORD');
 
         return new FurgonetkaClient($this->getGuzzleClient(), $credentials);
     }
