@@ -8,9 +8,9 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Package extends Entity
 {
-    const TYPE_PACKAGE = 'package';
-    const TYPE_ENVELOPE = 'dox';
-    const TYPE_PALLET = 'pallet';
+    public const TYPE_PACKAGE = 'package';
+    public const TYPE_ENVELOPE = 'dox';
+    public const TYPE_PALLET = 'pallet';
 
     public AddressDetails $pickup;
     public AddressDetails $receiver;
