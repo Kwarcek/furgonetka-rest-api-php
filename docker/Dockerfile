@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-COPY .env.testing .env
-
 RUN apt-get update -y && \
     apt-get install git -y
 
