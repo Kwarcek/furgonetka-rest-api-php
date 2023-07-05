@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kwarcek\FurgonetkaRestApi\Test;
 
+use Faker\Factory;
+use Faker\Generator;
 use GuzzleHttp\Client;
 use Kwarcek\FurgonetkaRestApi\FurgonetkaClient;
 use Kwarcek\FurgonetkaRestApi\LoginCredential;
@@ -20,12 +22,14 @@ abstract class TestCase extends BaseTestCase
 
     public RequestHelper $helper;
     public FurgonetkaClient $client;
+    public Generator $faker;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->client = $this->getFurgonetkaClient();
         $this->helper = new RequestHelper($this->client);
+        $this->faker = Factory::create();
     }
 
     private function getFurgonetkaClient(): FurgonetkaClient
