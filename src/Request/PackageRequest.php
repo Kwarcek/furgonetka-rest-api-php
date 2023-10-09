@@ -412,8 +412,8 @@ class PackageRequest extends Request
         AddressDetails $receiver,
         int $serviceId,
         array $parcels,
-        AddressDetails $sender,
-        ?AdditionalServices $additionalServices,
+        ?AddressDetails $sender = null,
+        ?AdditionalServices $additionalServices = null,
         ?string $userReferenceNumber = null,
         string $type = self::PACKAGE_TYPE_PACKAGE,
         ?Payer $payer = null
@@ -424,11 +424,11 @@ class PackageRequest extends Request
             'receiver' => $receiver->toArray(),
             'service_id' => $serviceId,
             'parcels' => $parcels,
-            'sender' => $sender->toArray(),
-            'payer' => ($payer) ? $payer->toArray() : null,
+            'sender' => $sender?->toArray(),
+            'payer' => $payer?->toArray(),
             'user_reference_number' => $userReferenceNumber,
             'type' => $type,
-            'additional_services' => ($additionalServices) ? $additionalServices->toArray() : null,
+            'additional_services' => $additionalServices?->toArray(),
         ]);
 
         return $this->response($response);
