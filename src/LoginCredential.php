@@ -8,8 +8,8 @@ namespace Kwarcek\FurgonetkaRestApi;
  */
 class LoginCredential
 {
-    const FURGONETKA_DEFAULT_TEST_LOGIN_API_URL = 'https://konto-test.furgonetka.pl/';
-    const FURGONETKA_DEFAULT_TEST_API_URL = 'https://api-test.furgonetka.pl/';
+    const FURGONETKA_DEFAULT_TEST_LOGIN_API_URL = 'https://api.sandbox.furgonetka.pl/';
+    const FURGONETKA_DEFAULT_TEST_API_URL = 'https://api.sandbox.furgonetka.pl/';
 
     public string $clientId;
     public string $clientSecret;

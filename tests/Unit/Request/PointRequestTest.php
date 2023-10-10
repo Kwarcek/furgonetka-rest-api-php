@@ -32,7 +32,6 @@ class PointRequestTest extends TestCase
 
         $location = new Location();
         $location->coordinate = $coordinate;
-        $location->searchPhrase = '';
         $location->address = new Address();
         $location->pointsMaxDistance = 15.00;
 
@@ -59,6 +58,54 @@ class PointRequestTest extends TestCase
         $response = $this->request->getMapPoints($location, $filter);
 
         $this->assertEquals(200, $response['code']);
-        $this->assertGreaterThan(0, count($response['data']));
+        $this->assertEquals(0, count($response['data']['points']));
+    }
+
+    public function test_point_request_get_map_points_success(): void
+    {
+        $coordinate = new Coordinate();
+        $coordinate->latitude = 52.2217652; // Warsaw
+        $coordinate->longitude = 20.9549011; // Warsaw
+
+        $location = new Location();
+        $location->coordinate = $coordinate;
+        $location->address = new Address();
+        $location->pointsMaxDistance = 15.00;
+
+        $mapBound = new MapBound();
+        $mapBound->northWest = new Coordinate();
+        $mapBound->northWest->latitude = 52.23;
+        $mapBound->northWest->longitude = 20.98;
+
+        $mapBound->northEast = new Coordinate();
+        $mapBound->northEast->latitude = 52.23;
+        $mapBound->northEast->longitude = 21.00;
+
+        $mapBound->southWest = new Coordinate();
+        $mapBound->southWest->latitude = 52.22;
+        $mapBound->southWest->longitude = 20.98;
+
+        $mapBound->southEast = new Coordinate();
+        $mapBound->southEast->latitude = 52.23;
+        $mapBound->southEast->longitude = 21.00;
+
+        $filter = new Filter();
+        $filter->services = [
+            "inpost",
+            "ruch",
+            "poczta",
+            "ups",
+            "dhl",
+            "dpd",
+            "meest",
+            "fedex"
+        ];
+        $filter->pointTypes = [];
+        $filter->mapBound = $mapBound;
+
+        $response = $this->request->getMapPoints($location, $filter);
+
+        $this->assertEquals(200, $response['code']);
+        $this->assertGreaterThan(0, count($response['data']['points']));
     }
 }
