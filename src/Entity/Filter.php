@@ -11,6 +11,7 @@ class Filter extends Entity
     public array $services;
     public array $pointTypes;
     public MapBound $mapBound;
+    public string $type = '';
 
     public function toArray(): array
     {
@@ -18,6 +19,7 @@ class Filter extends Entity
             'services' => $this->services,
             'point_types' => $this->pointTypes,
             'map_bounds' => $this->mapBound->toArray(),
+            'type' => $this->type,
         ];
     }
 }

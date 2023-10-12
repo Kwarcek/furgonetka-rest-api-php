@@ -41,7 +41,7 @@ class PackageRequest extends Request
      * @param AddressDetails $receiver
      * @param int $serviceId
      * @param Parcel[] $parcels
-     * @param AddressDetails $sender
+     * @param AddressDetails|null $sender
      * @param AdditionalServices $additionalServices
      * @param string $type
      * @param string|null $userReferenceNumber
@@ -58,20 +58,19 @@ class PackageRequest extends Request
         AddressDetails $receiver,
         int $serviceId,
         array $parcels,
-        AddressDetails $sender,
+        ?AddressDetails $sender,
         AdditionalServices $additionalServices,
         string $type = self::PACKAGE_TYPE_PACKAGE,
         ?string $userReferenceNumber = null,
         ?Payer $payer = null
-    ): array
-    {
+    ): array {
         $response = $this->client->post('/packages/validate', [
             'pickup' => $pickup->toArray(),
             'receiver' => $receiver->toArray(),
             'service_id' => $serviceId,
             'parcels' => $parcels,
-            'sender' => $sender->toArray(),
-            'payer' => ($payer) ? $payer->toArray() : null,
+            'sender' => $sender?->toArray(),
+            'payer' => $payer?->toArray(),
             'user_reference_number' => $userReferenceNumber,
             'type' => $type,
             'additional_services' => $additionalServices->toArray(),
@@ -229,7 +228,7 @@ class PackageRequest extends Request
      * @param AddressDetails $receiver
      * @param int $serviceId
      * @param Parcel $parcel
-     * @param AddressDetails $sender
+     * @param AddressDetails|null $sender
      * @param AdditionalServices|null $additionalServices
      * @param Payer|null $payer
      * @param string $type
@@ -282,23 +281,22 @@ class PackageRequest extends Request
         AddressDetails $receiver,
         int $serviceId,
         Parcel $parcel,
-        AddressDetails $sender,
+        ?AddressDetails $sender,
         ?AdditionalServices $additionalServices,
         ?Payer $payer = null,
         string $type = self::PACKAGE_TYPE_PACKAGE,
         ?string $userReferenceNumber = null
-    ): array
-    {
+    ): array {
         $response = $this->client->put("/packages/{$packageId}", [
             'pickup' => $pickup->toArray(),
             'receiver' => $receiver->toArray(),
             'service_id' => $serviceId,
             'parcels' => $parcel->toArray(),
-            'sender' => $sender->toArray(),
-            'payer' => ($payer) ? $payer->toArray() : null,
+            'sender' => $sender?->toArray(),
+            'payer' => $payer?->toArray(),
             'user_reference_number' => $userReferenceNumber,
             'type' => $type,
-            'additional_services' => ($additionalServices) ? $additionalServices->toArray() : null,
+            'additional_services' => $additionalServices?->toArray(),
         ]);
 
         return $this->response($response);
@@ -344,8 +342,7 @@ class PackageRequest extends Request
         string $consigmentNoteNumber,
         ?string $service = null,
         string $name = ''
-    ): array
-    {
+    ): array {
         $response = $this->client->post('/packages/add-to-tracking', [
             'package_no' => $consigmentNoteNumber,
             'service' => $service,
@@ -360,7 +357,7 @@ class PackageRequest extends Request
      * @param AddressDetails $receiver
      * @param int $serviceId
      * @param Parcel[] $parcels
-     * @param AddressDetails $sender
+     * @param AddressDetails|null $sender
      * @param AdditionalServices|null $additionalServices
      * @param string|null $userReferenceNumber
      * @param string $type
@@ -417,8 +414,7 @@ class PackageRequest extends Request
         ?string $userReferenceNumber = null,
         string $type = self::PACKAGE_TYPE_PACKAGE,
         ?Payer $payer = null
-    ): array
-    {
+    ): array {
         $response = $this->client->post('/packages', [
             'pickup' => $pickup->toArray(),
             'receiver' => $receiver->toArray(),
@@ -450,30 +446,31 @@ class PackageRequest extends Request
     public function getPackagesList(
         ?int $lastPackageId = null,
         ?int $limit = null,
-        string $listType = self::LIST_TYPE_ALL
-    ): array
-    {
+        string $listType = self::LIST_TYPE_ALL,
+        string $query = '',
+    ): array {
         $response = $this->client->get('/packages', [
             'limit' => $limit,
             'last_package_id' => $lastPackageId,
             'list_type' => $listType,
+            'query' => $query,
         ]);
 
         return $this->response($response);
     }
 
     /**
-     * @param object[] $package
+     * @param int[] $packageIds
      * @return array{
      *            code: int,
      *            data: array,
      *        }
      * @throws FurgonetkaApiException
      */
-    public function deletePackages(array $package): array
+    public function deletePackages(array $packageIds): array
     {
         $response = $this->client->delete('/packages', [
-            'packages' => $package
+            'packages' => $packageIds
         ]);
 
         return $this->response($response);
