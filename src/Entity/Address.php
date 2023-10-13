@@ -8,10 +8,10 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
  */
 class Address extends Entity
 {
-    public string $postCode = '';
-    public string $street = '';
-    public string $city = '';
-    public string $countryCode = '';
+    public ?string $postCode = null;
+    public ?string $street = null;
+    public ?string $city = null;
+    public ?string $countryCode = null;
 
     public function toArray(): array
     {
