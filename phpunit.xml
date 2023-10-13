@@ -14,9 +14,5 @@
     </coverage>
     <php>
         <server name="APP_ENV" value="development"/>
-        <env name="FURGONETKA_CLIENT_ID" value="" />
-        <env name="FURGONETKA_CLIENT_SECRET" value="" />
-        <env name="FURGONETKA_USERNAME" value="" />
-        <env name="FURGONETKA_PASSWORD" value="" />
     </php>
 </phpunit>

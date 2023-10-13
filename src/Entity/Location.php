@@ -9,9 +9,9 @@ namespace Kwarcek\FurgonetkaRestApi\Entity;
 class Location extends Entity
 {
     public Coordinate $coordinate;
-    public ?string $searchPhrase = null;
+    public string $searchPhrase = '';
     public Address $address;
-    public ?float $pointsMaxDistance = 10.00;
+    public float $pointsMaxDistance = 10.00;
 
     public function toArray(): array
     {
